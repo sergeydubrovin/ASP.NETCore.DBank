@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "819lJ03luEDgxVz1m98XbZFLecSKP2DWjbjzYKbMNfA=",
+  "Source": "dbank.Web",
+  "BasePath": "_content/dbank.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,7 @@
+C:\Users\PC\source\repos\dbank.Web\dbank.Domain\obj\Debug\net8.0\dbank.Domain.csproj.AssemblyReference.cache
+C:\Users\PC\source\repos\dbank.Web\dbank.Domain\obj\Debug\net8.0\dbank.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\source\repos\dbank.Web\dbank.Domain\obj\Debug\net8.0\dbank.Domain.AssemblyInfoInputs.cache
+C:\Users\PC\source\repos\dbank.Web\dbank.Domain\obj\Debug\net8.0\dbank.Domain.AssemblyInfo.cs
+C:\Users\PC\source\repos\dbank.Web\dbank.Domain\obj\Debug\net8.0\dbank.Domain.csproj.CoreCompileInputs.cache
+C:\Users\PC\source\repos\dbank.Web\dbank.Domain\obj\Debug\net8.0\dbank.Domain.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\PC\source\repos\dbank.Web\dbank.Domain\obj\Debug\net8.0\dbank.Domain.MvcApplicationPartsAssemblyInfo.cache

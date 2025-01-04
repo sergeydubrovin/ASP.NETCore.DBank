@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "dbank.Application": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61552;http://localhost:61553"
+    }
+  }
+}
