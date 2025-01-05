@@ -3,20 +3,60 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\dbank.Web\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.application\\models\\payments\\createpay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|solutionrelative:dbank.application\\models\\payments\\createpay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|solutionrelative:dbank\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.domain\\entities\\payentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|solutionrelative:dbank.domain\\entities\\payentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.application\\services\\paymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|solutionrelative:dbank.application\\services\\paymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.application\\models\\payments\\createpaymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|solutionrelative:dbank.application\\models\\payments\\createpaymentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.application\\abstractions\\ipaymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}|dbank.Application\\dbank.Application.csproj|solutionrelative:dbank.application\\abstractions\\ipaymentsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.domain\\entities\\paymententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|solutionrelative:dbank.domain\\entities\\paymententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.domain\\migrations\\20250105143937_init2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|solutionrelative:dbank.domain\\migrations\\20250105143937_init2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.domain\\migrations\\20250105143124_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|solutionrelative:dbank.domain\\migrations\\20250105143124_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|solutionrelative:dbank\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.domain\\bankdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|solutionrelative:dbank.domain\\bankdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.domain\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|solutionrelative:dbank.domain\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank.domain\\entities\\customerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B151AAE-89EB-4203-8E23-2C9B313DDD7A}|dbank.Domain\\dbank.Domain.csproj|solutionrelative:dbank.domain\\entities\\customerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank\\extensions\\servicecolletionsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|solutionrelative:dbank\\extensions\\servicecolletionsextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|solutionrelative:dbank\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|c:\\users\\pc\\source\\repos\\dbank.web\\dbank\\controllers\\apibasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{22F4879B-E2B7-46E7-ADC9-B88B32E10B09}|dbank\\dbank.Web.csproj|solutionrelative:dbank\\controllers\\apibasecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,55 +74,172 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PayEntity.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\PayEntity.cs",
-              "RelativeDocumentMoniker": "dbank.Domain\\Entities\\PayEntity.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\PayEntity.cs",
-              "RelativeToolTip": "dbank.Domain\\Entities\\PayEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "20250105143937_init2.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Migrations\\20250105143937_init2.cs",
+              "RelativeDocumentMoniker": "dbank.Domain\\Migrations\\20250105143937_init2.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Migrations\\20250105143937_init2.cs",
+              "RelativeToolTip": "dbank.Domain\\Migrations\\20250105143937_init2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T12:15:40.631Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-05T14:42:09.214Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CustomerEntity.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\CustomerEntity.cs",
-              "RelativeDocumentMoniker": "dbank.Domain\\Entities\\CustomerEntity.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\CustomerEntity.cs",
-              "RelativeToolTip": "dbank.Domain\\Entities\\CustomerEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "20250105143124_init.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Migrations\\20250105143124_init.cs",
+              "RelativeDocumentMoniker": "dbank.Domain\\Migrations\\20250105143124_init.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Migrations\\20250105143124_init.cs",
+              "RelativeToolTip": "dbank.Domain\\Migrations\\20250105143124_init.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T12:13:12.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-05T14:32:51.67Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "dbank.Domain\\Entities\\BaseEntity.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\BaseEntity.cs",
+              "RelativeToolTip": "dbank.Domain\\Entities\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T14:15:06.378Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CreatePay.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Models\\Payments\\CreatePay.cs",
-              "RelativeDocumentMoniker": "dbank.Application\\Models\\Payments\\CreatePay.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Models\\Payments\\CreatePay.cs",
-              "RelativeToolTip": "dbank.Application\\Models\\Payments\\CreatePay.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Title": "PaymentsController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Controllers\\PaymentsController.cs",
+              "RelativeDocumentMoniker": "dbank\\Controllers\\PaymentsController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Controllers\\PaymentsController.cs",
+              "RelativeToolTip": "dbank\\Controllers\\PaymentsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T11:50:27.752Z",
+              "WhenOpened": "2025-01-05T13:54:58.484Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\appsettings.json",
+              "RelativeDocumentMoniker": "dbank\\appsettings.json",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\appsettings.json",
+              "RelativeToolTip": "dbank\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-05T13:48:06.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BankDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\BankDbContext.cs",
+              "RelativeDocumentMoniker": "dbank.Domain\\BankDbContext.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\BankDbContext.cs",
+              "RelativeToolTip": "dbank.Domain\\BankDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T10:03:34.374Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PaymentsService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Services\\PaymentsService.cs",
+              "RelativeDocumentMoniker": "dbank.Application\\Services\\PaymentsService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Services\\PaymentsService.cs",
+              "RelativeToolTip": "dbank.Application\\Services\\PaymentsService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAgwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T09:56:14.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreatePaymentDto.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Models\\Payments\\CreatePaymentDto.cs",
+              "RelativeDocumentMoniker": "dbank.Application\\Models\\Payments\\CreatePaymentDto.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Models\\Payments\\CreatePaymentDto.cs",
+              "RelativeToolTip": "dbank.Application\\Models\\Payments\\CreatePaymentDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T11:50:27.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PaymentEntity.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\PaymentEntity.cs",
+              "RelativeDocumentMoniker": "dbank.Domain\\Entities\\PaymentEntity.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\PaymentEntity.cs",
+              "RelativeToolTip": "dbank.Domain\\Entities\\PaymentEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T12:15:40.631Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "IPaymentsService.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Abstractions\\IPaymentsService.cs",
+              "RelativeDocumentMoniker": "dbank.Application\\Abstractions\\IPaymentsService.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\Abstractions\\IPaymentsService.cs",
+              "RelativeToolTip": "dbank.Application\\Abstractions\\IPaymentsService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T13:13:26.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ServiceColletionsExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Extensions\\ServiceColletionsExtensions.cs",
+              "RelativeDocumentMoniker": "dbank\\Extensions\\ServiceColletionsExtensions.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Extensions\\ServiceColletionsExtensions.cs",
+              "RelativeToolTip": "dbank\\Extensions\\ServiceColletionsExtensions.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAgwEUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T11:16:10.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Program.cs",
               "RelativeDocumentMoniker": "dbank\\Program.cs",
               "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Program.cs",
               "RelativeToolTip": "dbank\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T10:39:21.231Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-05T11:15:57.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CustomerEntity.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\CustomerEntity.cs",
+              "RelativeDocumentMoniker": "dbank.Domain\\Entities\\CustomerEntity.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\Entities\\CustomerEntity.cs",
+              "RelativeToolTip": "dbank.Domain\\Entities\\CustomerEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-04T12:13:12.413Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ApiBaseController.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Controllers\\ApiBaseController.cs",
+              "RelativeDocumentMoniker": "dbank\\Controllers\\ApiBaseController.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank\\Controllers\\ApiBaseController.cs",
+              "RelativeToolTip": "dbank\\Controllers\\ApiBaseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-05T11:25:04.056Z"
             }
           ]
         }

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "PSlyg9glSvllSmilU4KLYnZIrI+94Gqjp+fW5Yf/d4Y=",
+  "Source": "dbank.Domain",
+  "BasePath": "_content/dbank.Domain",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

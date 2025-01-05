@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using dbank.Domain;
+using dbank.Application.Abstractions;
+using dbank.Application.Services;
 
 namespace dbank.Web.Extensions
 {
@@ -47,17 +49,19 @@ namespace dbank.Web.Extensions
         public static WebApplicationBuilder AddData(this WebApplicationBuilder builder)
         {
             builder.Services.AddDbContext<BankDbContext>(opt =>
-            opt.UseNpgsql(builder.Configuration.GetConnectionString("Connect")));
+                opt.UseNpgsql(builder.Configuration.GetConnectionString("Db")));
 
             return builder;
         }
     
         public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
         {
+            builder.Services.AddScoped<IPaymentsService, PaymentsService>();
+           
             return builder;
         }
     
-        public static WebApplicationBuilder AddIntеgrationServices(this WebApplicationBuilder builder)
+        public static WebApplicationBuilder AddIntegrationServices(this WebApplicationBuilder builder)
         {
             return builder;
         }

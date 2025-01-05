@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "Новый профиль",
+    "Projects": [
+      {
+        "Path": "dbank\\dbank.Web.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "dbank.Domain\\dbank.Domain.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "dbank.Application\\dbank.Application.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

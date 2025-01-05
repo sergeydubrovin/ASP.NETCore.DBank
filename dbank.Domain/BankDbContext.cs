@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using dbank.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace dbank.Domain
 {
@@ -11,5 +12,10 @@ namespace dbank.Domain
                 Database.Migrate();
             }
         }      
+    
+        public DbSet<CustomerEntity> Customers { get; set; }
+        
+        public DbSet<PaymentEntity> Payments { get; set; }
     }
 }
+

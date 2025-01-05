@@ -10,6 +10,6 @@
         public decimal? Balance { get; set; }
         public DateTime? BirthDate { get; set; }
 
-        public List<PayEntity>? Payments { get; set; }
+        public List<PaymentEntity>? Payments { get; set; }
     }
 }

@@ -31,7 +31,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\dbank.Domain.csproj": {
+                "projectPath": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\dbank.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -115,11 +119,7 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {
-              "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\dbank.Application.csproj": {
-                "projectPath": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\dbank.Application.csproj"
-              }
-            }
+            "projectReferences": {}
           }
         },
         "warningProperties": {

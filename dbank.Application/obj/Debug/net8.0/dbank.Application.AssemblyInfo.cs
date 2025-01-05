@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dbank.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd8776c3fddaf3937025f76651815d94259ceb48")]
 [assembly: System.Reflection.AssemblyProductAttribute("dbank.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dbank.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
