@@ -2574,11 +2574,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\dbank.Application.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Application\\dbank.Application.csproj",
       "projectName": "dbank.Application",
-      "projectPath": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\dbank.Application.csproj",
+      "projectPath": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Application\\dbank.Application.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\obj\\",
+      "outputPath": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2599,8 +2599,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\dbank.Domain.csproj": {
-              "projectPath": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\dbank.Domain.csproj"
+            "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Domain\\dbank.Domain.csproj": {
+              "projectPath": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Domain\\dbank.Domain.csproj"
             }
           }
         }

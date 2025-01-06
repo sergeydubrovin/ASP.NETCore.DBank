@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "iUP4ECROBYhwr2CHgahMIl4AZ6vCAVp35m9SEbZ30co=",
+  "Hash": "rauGU1/ec28r8pDm5JuB7dP1URuFiBlz6qEJ6ZmEUYg=",
   "Source": "dbank.Web",
   "BasePath": "_content/dbank.Web",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Application\\dbank.Application.csproj",
+      "Identity": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Application\\dbank.Application.csproj",
       "Version": 2,
       "Source": "dbank.Application",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
@@ -18,7 +18,7 @@
       "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     },
     {
-      "Identity": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\dbank.Domain.csproj",
+      "Identity": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Domain\\dbank.Domain.csproj",
       "Version": 2,
       "Source": "dbank.Domain",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",

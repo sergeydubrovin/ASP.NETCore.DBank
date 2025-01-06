@@ -57,6 +57,7 @@ namespace dbank.Web.Extensions
         public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<IPaymentsService, PaymentsService>();
+            builder.Services.AddScoped<ICustomersService, CustomersService>();
            
             return builder;
         }

@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "fnBElTJCxBvKYOPRQlK7n1JLNZoVVe2xGzEz4r8vuKA=",
+  "Hash": "OgwNhjyZGImPP02GViiSKkml0Gm82KBjZKYKrCDqD1Y=",
   "Source": "dbank.Application",
   "BasePath": "_content/dbank.Application",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\PC\\source\\repos\\dbank.Web\\dbank.Domain\\dbank.Domain.csproj",
+      "Identity": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Domain\\dbank.Domain.csproj",
       "Version": 2,
       "Source": "dbank.Domain",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",

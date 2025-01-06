@@ -2,6 +2,7 @@
 {
     public class CustomerEntity : BaseEntity
     {
+        public long? CustomerId { get; set; }
         public string? CardNumber { get; set; }
         public string? Phone { get; set; }
         public string FirstName { get; set; } = null!;
