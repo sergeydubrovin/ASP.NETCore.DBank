@@ -617,6 +617,15 @@
           }
         }
       },
+      "oqo0.SwaggerThemes/1.4.3": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/SwaggerThemes.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/SwaggerThemes.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "type": "package",
         "dependencies": {
@@ -2154,6 +2163,21 @@
         "postgresql.png"
       ]
     },
+    "oqo0.SwaggerThemes/1.4.3": {
+      "sha512": "hB2BtKIssGZ3N+G8x3lsvx54Mtkc7jv3iSjXolAzmjdhol/yOXTM7DWJYoXbdrsmHXXw/wy3JNpA3sVAvUZwiw==",
+      "type": "package",
+      "path": "oqo0.swaggerthemes/1.4.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/SwaggerThemes.dll",
+        "lib/net8.0/SwaggerThemes.dll",
+        "lib/net9.0/SwaggerThemes.dll",
+        "oqo0.swaggerthemes.1.4.3.nupkg.sha512",
+        "oqo0.swaggerthemes.nuspec",
+        "package-logo.png"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.6.2": {
       "sha512": "+NB4UYVYN6AhDSjW0IJAd1AGD8V33gemFNLPaxKTtPkHB+HaKAKf9MGAEUPivEWvqeQfcKIw8lJaHq6LHljRuw==",
       "type": "package",
@@ -2588,7 +2612,8 @@
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.11",
       "Swashbuckle.AspNetCore >= 6.6.2",
       "dbank.Application >= 1.0.0",
-      "dbank.Domain >= 1.0.0"
+      "dbank.Domain >= 1.0.0",
+      "oqo0.SwaggerThemes >= 1.4.3"
     ]
   },
   "packageFolders": {
@@ -2661,6 +2686,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.6.2, )"
+          },
+          "oqo0.SwaggerThemes": {
+            "target": "Package",
+            "version": "[1.4.3, )"
           }
         },
         "imports": [

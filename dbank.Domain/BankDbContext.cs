@@ -7,15 +7,18 @@ namespace dbank.Domain
     {
         public BankDbContext(DbContextOptions<BankDbContext> options) : base(options)
         {
-            if(Database.GetPendingMigrations().Any())
+            if (Database.GetPendingMigrations().Any())
             {
                 Database.Migrate();
             }
-        }      
-    
+        }
+
         public DbSet<CustomerEntity> Customers { get; set; }
-        
+
+        public DbSet<BalanceEntity> Balances { get; set; }
+
         public DbSet<PaymentEntity> Payments { get; set; }
+
+        public DbSet<CashDepositEntity> CashDeposits { get; set; }
     }
 }
-

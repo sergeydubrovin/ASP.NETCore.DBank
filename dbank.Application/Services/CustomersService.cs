@@ -18,7 +18,6 @@ public class CustomersService(BankDbContext context) : ICustomersService
             MiddleName = customer.MiddleName,
             FirstName = customer.FirstName,
             LastName = customer.LastName,
-            Balance = customer.Balance,
             BirthDate = customer.BirthDate,
         };
         await context.Customers.AddAsync(entity);
@@ -27,7 +26,7 @@ public class CustomersService(BankDbContext context) : ICustomersService
 
     public async Task<CustomerEntity> GetById(long customerId)
     {
-        var entity = await context.Customers.FirstOrDefaultAsync(x => x.Id == customerId);
+        var entity = await context.Customers.FirstOrDefaultAsync(e => e.Id == customerId);
         
         return entity;
     }

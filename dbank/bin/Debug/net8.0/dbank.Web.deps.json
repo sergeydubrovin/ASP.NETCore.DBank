@@ -12,7 +12,8 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.11",
           "Swashbuckle.AspNetCore": "6.6.2",
           "dbank.Application": "1.0.0",
-          "dbank.Domain": "1.0.0"
+          "dbank.Domain": "1.0.0",
+          "oqo0.SwaggerThemes": "1.4.3"
         },
         "runtime": {
           "dbank.Web.dll": {}
@@ -439,6 +440,14 @@
           }
         }
       },
+      "oqo0.SwaggerThemes/1.4.3": {
+        "runtime": {
+          "lib/net8.0/SwaggerThemes.dll": {
+            "assemblyVersion": "1.4.3.0",
+            "fileVersion": "1.4.3.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -784,6 +793,13 @@
       "sha512": "sha512-leShR/O/nSIS3Jpj8yUBmkzaXzBbtlV326+MYkX2BwAj2qSNrUv/H6m8G9Hnv2zUkQYccTpmV5jIVq5vdciEUA==",
       "path": "npgsql.entityframeworkcore.postgresql/8.0.11",
       "hashPath": "npgsql.entityframeworkcore.postgresql.8.0.11.nupkg.sha512"
+    },
+    "oqo0.SwaggerThemes/1.4.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hB2BtKIssGZ3N+G8x3lsvx54Mtkc7jv3iSjXolAzmjdhol/yOXTM7DWJYoXbdrsmHXXw/wy3JNpA3sVAvUZwiw==",
+      "path": "oqo0.swaggerthemes/1.4.3",
+      "hashPath": "oqo0.swaggerthemes.1.4.3.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.6.2": {
       "type": "package",

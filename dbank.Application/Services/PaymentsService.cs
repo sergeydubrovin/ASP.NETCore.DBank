@@ -22,13 +22,13 @@ namespace dbank.Application.Services
         }
         public async Task<PaymentEntity> GetById(long paymentId)
         {
-            var entity = await context.Payments.FirstOrDefaultAsync(x => x.Id == paymentId);
+            var entity = await context.Payments.FirstOrDefaultAsync(e => e.Id == paymentId);
 
             return entity;
         }
         public async Task<List<PaymentEntity>> GetByUser(long customerId)
         {
-            var payments = await context.Payments.Where(x => x.CustomerId == customerId).ToListAsync();
+            var payments = await context.Payments.Where(p => p.CustomerId == customerId).ToListAsync();
 
             return payments;
         }

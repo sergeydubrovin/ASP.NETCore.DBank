@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using dbank.Domain;
@@ -11,9 +12,11 @@ using dbank.Domain;
 namespace dbank.Domain.Migrations
 {
     [DbContext(typeof(BankDbContext))]
-    partial class BankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250107115908_name1")]
+    partial class name1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,42 +51,6 @@ namespace dbank.Domain.Migrations
                         .IsUnique();
 
                     b.ToTable("Balances");
-                });
-
-            modelBuilder.Entity("dbank.Domain.Entities.CashDepositEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long?>("CustomerId")
-                        .HasColumnType("bigint");
-
-                    b.Property<decimal?>("DepositAmount")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal?>("DepositPeriod")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal?>("InterestRate")
-                        .HasColumnType("numeric");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("CashDeposits");
                 });
 
             modelBuilder.Entity("dbank.Domain.Entities.CustomerEntity", b =>
@@ -170,15 +137,6 @@ namespace dbank.Domain.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CashDepositEntity", b =>
-                {
-                    b.HasOne("dbank.Domain.Entities.CustomerEntity", "Customer")
-                        .WithMany("CashDeposits")
-                        .HasForeignKey("CustomerId");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("dbank.Domain.Entities.PaymentEntity", b =>
                 {
                     b.HasOne("dbank.Domain.Entities.CustomerEntity", "Customer")
@@ -191,8 +149,6 @@ namespace dbank.Domain.Migrations
             modelBuilder.Entity("dbank.Domain.Entities.CustomerEntity", b =>
                 {
                     b.Navigation("Balance");
-
-                    b.Navigation("CashDeposits");
 
                     b.Navigation("Payments");
                 });
