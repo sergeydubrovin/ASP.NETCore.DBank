@@ -239,3 +239,4 @@ C:\Users\PC\RiderProjects\ASP.NETCore.dbank\dbank\obj\Debug\net8.0\dbank.Web.pdb
 C:\Users\PC\RiderProjects\ASP.NETCore.dbank\dbank\obj\Debug\net8.0\dbank.Web.genruntimeconfig.cache
 C:\Users\PC\RiderProjects\ASP.NETCore.dbank\dbank\obj\Debug\net8.0\ref\dbank.Web.dll
 C:\Users\PC\RiderProjects\ASP.NETCore.dbank\dbank\bin\Debug\net8.0\SwaggerThemes.dll
+C:\Users\PC\RiderProjects\ASP.NETCore.dbank\dbank\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll

@@ -30,7 +30,7 @@ public class CashDepositsService(BankDbContext context) : ICashDepositsService
 
     public async Task<List<CashDepositEntity>> GetByUser(long customerId)
     {
-        var deposits = await context.CashDeposits.Where(e => e.CustomerId == customerId).ToListAsync();
+        var deposits = await context.CashDeposits.Where(d => d.CustomerId == customerId).ToListAsync();
         
         return deposits;
     }

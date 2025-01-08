@@ -8,14 +8,14 @@ namespace dbank.Application.Services
 {
     public class PaymentsService(BankDbContext context) : IPaymentsService
     {
-        public async Task Create(CreatePaymentDto pay)
+        public async Task Create(CreatePaymentDto payment)
         {
             var entity = new PaymentEntity
             {
-                PaymentAmount = pay.PaymentAmount,
-                Name = pay.Name,
-                RecipientCardNumber = pay.RecipientCardNumber,
-                CustomerId = pay.CustomerId
+                PaymentAmount = payment.PaymentAmount,
+                Name = payment.Name,
+                RecipientCardNumber = payment.RecipientCardNumber,
+                CustomerId = payment.CustomerId
             };       
             await context.Payments.AddAsync(entity);
             await context.SaveChangesAsync();

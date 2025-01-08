@@ -5,7 +5,7 @@ namespace dbank.Application.Abstractions
 {
     public interface IPaymentsService
     {
-        Task Create(CreatePaymentDto pay);
+        Task Create(CreatePaymentDto payment);
         Task<PaymentEntity> GetById(long paymentId);
         Task<List<PaymentEntity>> GetByUser(long customerId);  
     }

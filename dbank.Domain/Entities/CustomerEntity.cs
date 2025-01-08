@@ -1,9 +1,11 @@
-﻿namespace dbank.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace dbank.Domain.Entities
 {
     public class CustomerEntity : BaseEntity
     {
         public long? CustomerId { get; set; }
-        public string? CardNumber { get; set; }
+        public string CardNumber { get; set; }
         public string? Phone { get; set; }
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
@@ -13,5 +15,6 @@
         public BalanceEntity? Balance { get; set; }
         public List<PaymentEntity>? Payments { get; set; }
         public List<CashDepositEntity>? CashDeposits { get; set; }
+        public List<CreditEntity>? Credits { get; set; }
     }
 }

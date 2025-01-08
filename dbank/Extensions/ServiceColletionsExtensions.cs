@@ -17,7 +17,7 @@ namespace dbank.Web.Extensions
                     Title = "API",
                     Version = "v1"
                 });
-
+                
                 option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -60,6 +60,7 @@ namespace dbank.Web.Extensions
             builder.Services.AddScoped<IPaymentsService, PaymentsService>();
             builder.Services.AddScoped<IBalancesService, BalancesService>();
             builder.Services.AddScoped<ICashDepositsService, CashDepositsService>();
+            builder.Services.AddScoped<ICreditsService, CreditsService>();
            
             return builder;
         }
