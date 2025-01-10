@@ -32,6 +32,12 @@ namespace dbank.Application.Services
 
             return payments;
         }
+
+        public async Task<List<PaymentEntity>> GetAll()
+        {
+            var payments = await context.Payments.ToListAsync();
+            
+            return payments;
+        }
     }
 }
-

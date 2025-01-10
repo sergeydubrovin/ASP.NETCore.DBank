@@ -8,5 +8,6 @@ namespace dbank.Application.Abstractions
         Task Create(CreatePaymentDto payment);
         Task<PaymentEntity> GetById(long paymentId);
         Task<List<PaymentEntity>> GetByUser(long customerId);  
+        Task<List<PaymentEntity>> GetAll();
     }
 }

@@ -8,4 +8,5 @@ public interface ICreditsService
     Task Create(CreateCreditDto credit);
     Task<CreditEntity> GetById(long creditId);
     Task<List<CreditEntity>> GetByUser(long customerId);
+    Task<List<CreditEntity>> GetAll();
 }

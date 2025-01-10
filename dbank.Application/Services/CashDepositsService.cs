@@ -21,16 +21,24 @@ public class CashDepositsService(BankDbContext context) : ICashDepositsService
         await context.CashDeposits.AddAsync(entity);
         await context.SaveChangesAsync();
     }
+
     public async Task<CashDepositEntity> GetById(long depositId)
     {
         var entity = await context.CashDeposits.FirstOrDefaultAsync(e => e.Id == depositId);
-        
+
         return entity;
     }
 
     public async Task<List<CashDepositEntity>> GetByUser(long customerId)
     {
         var deposits = await context.CashDeposits.Where(d => d.CustomerId == customerId).ToListAsync();
+
+        return deposits;
+    }
+
+    public async Task<List<CashDepositEntity>> GetAll()
+    {
+        var deposits = await context.CashDeposits.ToListAsync();
         
         return deposits;
     }

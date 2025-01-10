@@ -18,7 +18,6 @@ public class BalancesService(BankDbContext context) : IBalancesService
         await context.Balances.AddAsync(entity);
         await context.SaveChangesAsync();
     }
-
     public async Task<BalanceEntity> GetByUser(long customerId)
     {
         var balance = await context.Balances.FirstOrDefaultAsync(b => b.CustomerId == customerId);

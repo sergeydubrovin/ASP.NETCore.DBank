@@ -13,7 +13,7 @@ public class CustomersService(BankDbContext context) : ICustomersService
         var entity = new CustomerEntity
         {
             CustomerId = customer.CustomerId,
-            CardNumber = customer.CardNumber,
+            CardNumber = customer.CardNumber!,
             Phone = customer.Phone,
             MiddleName = customer.MiddleName,
             FirstName = customer.FirstName,
@@ -23,7 +23,6 @@ public class CustomersService(BankDbContext context) : ICustomersService
         await context.Customers.AddAsync(entity);
         await context.SaveChangesAsync();
     }
-
     public async Task<CustomerEntity> GetById(long customerId)
     {
         var entity = await context.Customers.FirstOrDefaultAsync(e => e.Id == customerId);

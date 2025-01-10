@@ -31,4 +31,11 @@ public class CreditsService(BankDbContext context) : ICreditsService
 
         return credits;
     }
+
+    public async Task<List<CreditEntity>> GetAll()
+    {
+        var credits = await context.Credits.ToListAsync();
+        
+        return credits;
+    }
 }
