@@ -2,6 +2,7 @@ using dbank.Application.Abstractions;
 using dbank.Application.Models.CashDeposits;
 using dbank.Domain;
 using dbank.Domain.Entities;
+using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace dbank.Application.Services;
@@ -12,7 +13,7 @@ public class CashDepositsService(BankDbContext context) : ICashDepositsService
     {
         var entity = new CashDepositEntity
         {
-            Name = deposit.Name,
+            Name = deposit.DepositName,
             DepositAmount = deposit.DepositAmount,
             DepositPeriod = deposit.DepositPeriod,
             InterestRate = deposit.InterestRate,
@@ -25,6 +26,11 @@ public class CashDepositsService(BankDbContext context) : ICashDepositsService
     public async Task<CashDepositEntity> GetById(long depositId)
     {
         var entity = await context.CashDeposits.FirstOrDefaultAsync(e => e.Id == depositId);
+
+        if (entity == null)
+        {
+            throw new EntityNotFoundException($"Вклад с id {depositId} не найден.");
+        }
 
         return entity;
     }

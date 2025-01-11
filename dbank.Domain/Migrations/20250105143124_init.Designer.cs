@@ -13,7 +13,7 @@ namespace dbank.Domain.Migrations
 {
     [DbContext(typeof(BankDbContext))]
     [Migration("20250105143124_init")]
-    partial class init
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

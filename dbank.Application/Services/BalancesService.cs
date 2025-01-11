@@ -2,6 +2,7 @@ using dbank.Application.Abstractions;
 using dbank.Application.Models.Balances;
 using dbank.Domain;
 using dbank.Domain.Entities;
+using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace dbank.Application.Services;
@@ -18,10 +19,16 @@ public class BalancesService(BankDbContext context) : IBalancesService
         await context.Balances.AddAsync(entity);
         await context.SaveChangesAsync();
     }
+    
     public async Task<BalanceEntity> GetByUser(long customerId)
     {
         var balance = await context.Balances.FirstOrDefaultAsync(b => b.CustomerId == customerId);
 
+        if (balance == null)
+        {
+            throw new EntityNotFoundException($"У пользователя с id {customerId} отсутствует баланс.");
+        }
+        
         return balance;
     }
 }
