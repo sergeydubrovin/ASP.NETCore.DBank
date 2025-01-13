@@ -11,70 +11,69 @@ namespace dbank.Application.Services
     {
         public async Task Create(CreatePaymentDto payment)
         {
-            using (var transaction = await context.Database.BeginTransactionAsync())
+            await using var transaction = await context.Database.BeginTransactionAsync();
+            try
             {
-                try
+                var sender = await context.Customers
+                    .Include(b => b.Balance)
+                    .FirstOrDefaultAsync(s => s.CustomerId == payment.CustomerId);
+                var recipient = await context.Customers
+                    .Include(b => b.Balance)
+                    .FirstOrDefaultAsync(r => r.CardNumber == payment.RecipientCardNumber);
+
+                switch (sender, recipient)
                 {
-                    var sender = await context.Customers
-                        .Include(b => b.Balance)
-                        .FirstOrDefaultAsync(s => s.CustomerId == payment.CustomerId);
-                    var recipient = await context.Customers
-                        .Include(b => b.Balance)
-                        .FirstOrDefaultAsync(r => r.CardNumber == payment.RecipientCardNumber);
+                    case (null, _):
+                        throw new EntityNotFoundException($"Отправитель с id {payment.CustomerId} не найден.");
 
-                    switch (sender, recipient)
-                    {
-                        case (null, _):
-                            throw new EntityNotFoundException($"Отправитель с id {payment.CustomerId} не найден.");
+                    case (_, null):
+                        throw new EntityNotFoundException(
+                            $"Получатель с номером карты {payment.RecipientCardNumber} не найден.");
 
-                        case (_, null):
-                            throw new EntityNotFoundException(
-                                $"Получатель с номером карты {payment.RecipientCardNumber} не найден.");
+                    case ({ Balance: null }, _):
+                        throw new EntityNotFoundException($"У отправителя с id {payment.CustomerId} не открыт баланс.");
 
-                        case ({ Balance: null }, _):
-                            throw new EntityNotFoundException($"У отправителя с id {payment.CustomerId} не открыт баланс.");
+                    case ({ Balance: { Balance: var senderBalance } }, _)
+                        when senderBalance < payment.PaymentAmount:
+                        throw new EntityNotFoundException("На балансе недостаточно средств.");
+                }
 
-                        case ({ Balance: { Balance: var senderBalance } }, _)
-                            when senderBalance < payment.PaymentAmount:
-                            throw new EntityNotFoundException("На балансе недостаточно средств.");
-                    }
-
-                    sender.Balance.Balance -= payment.PaymentAmount;
+                sender.Balance.Balance -= payment.PaymentAmount;
                     
-                    if (recipient.Balance == null)
+                if (recipient.Balance == null)
+                {
+                    recipient.Balance = new BalanceEntity()
                     {
-                        recipient.Balance = new BalanceEntity()
-                        {
-                            CustomerId = recipient.CustomerId,
-                            Balance = payment.PaymentAmount,
-                        };
-                        context.Balances.Add(recipient.Balance);
-                    }
-                    else
-                    {
-                        recipient.Balance.Balance += payment.PaymentAmount;
-                    }
-                    
-                    var entity = new PaymentEntity()
-                    {
-                        PaymentAmount = payment.PaymentAmount,
-                        Name = payment.Name,
-                        RecipientCardNumber = payment.RecipientCardNumber,
-                        CustomerId = payment.CustomerId,
+                        CustomerId = recipient.CustomerId,
+                        Balance = payment.PaymentAmount,
                     };
-
-                    await context.Payments.AddAsync(entity);
-                    await context.SaveChangesAsync();
+                    context.Balances.Add(recipient.Balance);
+                }
+                else 
+                { 
+                    recipient.Balance.Balance += payment.PaymentAmount;
+                }
                     
-                    await transaction.CommitAsync();
-                }
-                catch(Exception ex)
+                var entity = new PaymentEntity()
                 {
-                    await transaction.RollbackAsync();
+                    PaymentAmount = payment.PaymentAmount,
+                    Name = payment.Name,
+                    RecipientCardNumber = payment.RecipientCardNumber, 
+                    CustomerId = payment.CustomerId, 
+                };
 
-                    throw new PaymentErrorException($"Ошибка при обработке платежа. {ex.Message}");
-                }
+                await context.Payments.AddAsync(entity);
+                await context.SaveChangesAsync();
+                    
+                await transaction.CommitAsync();
             }
+            catch(EntityNotFoundException ex) 
+            {
+                await transaction.RollbackAsync();
+
+                throw new PaymentErrorException($"Ошибка при обработке платежа. {ex.Message}");
+            }
+            
         }
         
         public async Task<PaymentEntity> GetById(long paymentId)

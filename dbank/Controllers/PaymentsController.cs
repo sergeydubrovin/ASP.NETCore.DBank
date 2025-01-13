@@ -17,7 +17,7 @@ namespace dbank.Web.Controllers
             await paymentsService.Create(dto);
 
             logger.LogInformation($"Method api/payments Create finished. Request: {JsonSerializer.Serialize(dto)}" +
-                                  $"Response: {JsonSerializer.Serialize(dto)}");;
+                                  $"Response: {JsonSerializer.Serialize(dto)}");
             
             return Ok();
         }

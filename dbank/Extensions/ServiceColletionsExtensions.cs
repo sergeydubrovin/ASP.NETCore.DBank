@@ -3,11 +3,20 @@ using Microsoft.OpenApi.Models;
 using dbank.Domain;
 using dbank.Application.Abstractions;
 using dbank.Application.Services;
+using Microsoft.AspNetCore.HttpLogging;
 
 namespace dbank.Web.Extensions
 {
-    public static class ServiceColletionsExtensions
+    public static class ServiceCollectionsExtensions
     {
+        public static WebApplicationBuilder AddLogging(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddHttpLogging(option =>
+                option.LoggingFields = HttpLoggingFields.Duration);
+            
+            return builder;
+        }
+        
         public static WebApplicationBuilder AddSwagger(this WebApplicationBuilder builder)
         {
             builder.Services.AddSwaggerGen(option =>
@@ -61,6 +70,7 @@ namespace dbank.Web.Extensions
             builder.Services.AddScoped<IBalancesService, BalancesService>();
             builder.Services.AddScoped<ICashDepositsService, CashDepositsService>();
             builder.Services.AddScoped<ICreditsService, CreditsService>();
+            builder.Services.AddScoped<ICurrenciesService, CurrenciesService>();
            
             return builder;
         }
