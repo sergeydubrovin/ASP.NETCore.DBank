@@ -1,8 +1,8 @@
 using dbank.Application.Models.CashDeposits;
 
-namespace dbank.Application.Services.CashDeposits;
+namespace dbank.Application.Extensions;
 
-public static class CoreCashDepositsService
+public static class CashDepositsExtensions
 {
     public static decimal ComputeFinalAmount(this CreateCashDepositDto deposit)
     {

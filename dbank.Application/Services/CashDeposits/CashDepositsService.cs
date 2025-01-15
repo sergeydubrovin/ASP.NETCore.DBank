@@ -1,4 +1,5 @@
 using dbank.Application.Abstractions;
+using dbank.Application.Extensions;
 using dbank.Application.Models.CashDeposits;
 using dbank.Domain;
 using dbank.Domain.Entities;
