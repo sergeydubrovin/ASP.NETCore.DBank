@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dbank.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+352b108c9ed3384a1db7d1f58be781a47a3b4be9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf1d9f045cf9a21c0c5536029ceff8043afa01ad")]
 [assembly: System.Reflection.AssemblyProductAttribute("dbank.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dbank.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
