@@ -6,7 +6,7 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace dbank.Application.Services.Customers;
 
 public class CustomersService(BankDbContext context) : ICustomersService
 {

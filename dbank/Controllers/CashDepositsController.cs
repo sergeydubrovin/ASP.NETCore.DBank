@@ -14,12 +14,12 @@ public class CashDepositsController(ICashDepositsService depositsService,
     {
         logger.LogInformation($"Method api/cash-deposits Create started. Request: {JsonSerializer.Serialize(dto)}");
         
-        await depositsService.Create(dto);
+        var result = await depositsService.Create(dto);
 
         logger.LogInformation($"Method api/cash-deposits Create finished. Request: {JsonSerializer.Serialize(dto)}" +
-                              $"Response: {JsonSerializer.Serialize(dto)}");
+                              $"Response: {JsonSerializer.Serialize(result)}");
         
-        return Ok();
+        return Ok(result);
     }
 
     [HttpGet("{depositId:long}")]

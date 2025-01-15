@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using dbank.Domain;
@@ -11,9 +12,11 @@ using dbank.Domain;
 namespace dbank.Domain.Migrations
 {
     [DbContext(typeof(BankDbContext))]
-    partial class BankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250114130012_name6")]
+    partial class name6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,8 +73,8 @@ namespace dbank.Domain.Migrations
                     b.Property<decimal?>("DepositAmount")
                         .HasColumnType("numeric");
 
-                    b.Property<int?>("DepositPeriod")
-                        .HasColumnType("integer");
+                    b.Property<decimal?>("DepositPeriod")
+                        .HasColumnType("numeric");
 
                     b.Property<decimal?>("FinalAmount")
                         .HasColumnType("numeric");
@@ -106,8 +109,8 @@ namespace dbank.Domain.Migrations
                     b.Property<decimal?>("CreditAmount")
                         .HasColumnType("numeric");
 
-                    b.Property<int?>("CreditPeriod")
-                        .HasColumnType("integer");
+                    b.Property<decimal?>("CreditPeriod")
+                        .HasColumnType("numeric");
 
                     b.Property<long?>("CustomerId")
                         .HasColumnType("bigint");
@@ -115,17 +118,11 @@ namespace dbank.Domain.Migrations
                     b.Property<decimal?>("InitialPayment")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal?>("InitialPaymentRate")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal?>("InterestCreditRate")
+                    b.Property<decimal?>("InterestRate")
                         .HasColumnType("numeric");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
-
-                    b.Property<decimal?>("MonthlyPayment")
-                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 

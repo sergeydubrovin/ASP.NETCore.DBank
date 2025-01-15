@@ -5,7 +5,7 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace dbank.Application.Services.Balances;
 
 public class BalancesService(BankDbContext context) : IBalancesService
 {

@@ -14,12 +14,12 @@ public class CreditsController(ICreditsService creditsService,
     {
         logger.LogInformation($"Method api/credits Create started. Request: {JsonSerializer.Serialize(dto)}");
         
-        await creditsService.Create(dto);
+        var result = await creditsService.Create(dto);
         
         logger.LogInformation($"Method api/credits Create finished. Request: {JsonSerializer.Serialize(dto)}" +
-                              $"Response: {JsonSerializer.Serialize(dto)}");
+                              $"Response: {JsonSerializer.Serialize(result)}");
         
-        return Ok();
+        return Ok(result);
     }
 
     [HttpGet("{creditId:long}")]

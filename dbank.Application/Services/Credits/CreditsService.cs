@@ -5,20 +5,29 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace dbank.Application.Services.Credits;
 
 public class CreditsService(BankDbContext context) : ICreditsService
 {
-    public async Task Create(CreateCreditDto credit)
+    public async Task<CreditEntity> Create(CreateCreditDto credit)
     {
+        var initialPayment = credit.ComputeInitialPayment();
+        var monthlyPayment = credit.ComputeMonthlyPayment(initialPayment);
+        
         var entity = new CreditEntity
         {
             CreditAmount = credit.CreditAmount,
             CreditPeriod = credit.CreditPeriod,
             CustomerId = credit.CustomerId,
+            InterestCreditRate = credit.InterestRate,
+            InitialPaymentRate = credit.InitialPaymentRate,
+            InitialPayment = initialPayment,
+            MonthlyPayment = monthlyPayment,
         };
         await context.Credits.AddAsync(entity);
         await context.SaveChangesAsync();
+        
+        return entity;
     }
     
     public async Task<CreditEntity> GetById(long creditId)

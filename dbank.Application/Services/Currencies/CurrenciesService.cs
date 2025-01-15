@@ -5,7 +5,7 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace dbank.Application.Services.Currencies;
 
 public class CurrenciesService(BankDbContext context) : ICurrenciesService
 {
@@ -29,6 +29,7 @@ public class CurrenciesService(BankDbContext context) : ICurrenciesService
             entity.Usd = currency.Usd;
             entity.Eur = currency.Eur;
             entity.Jpy = currency.Jpy;
+            entity.UpdatedDate = DateTime.UtcNow;
         }
 
         await context.SaveChangesAsync();

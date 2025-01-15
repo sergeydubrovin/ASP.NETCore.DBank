@@ -2,7 +2,12 @@
 using Microsoft.OpenApi.Models;
 using dbank.Domain;
 using dbank.Application.Abstractions;
-using dbank.Application.Services;
+using dbank.Application.Services.Balances;
+using dbank.Application.Services.CashDeposits;
+using dbank.Application.Services.Credits;
+using dbank.Application.Services.Currencies;
+using dbank.Application.Services.Customers;
+using dbank.Application.Services.Payments;
 using Microsoft.AspNetCore.HttpLogging;
 
 namespace dbank.Web.Extensions
@@ -80,4 +85,4 @@ namespace dbank.Web.Extensions
             return builder;
         }
     }
-}   
+}

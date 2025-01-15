@@ -8,6 +8,6 @@ namespace dbank.Application.Models.Payments
         public long? CustomerId { get; set; }
         [StringLength(16, ErrorMessage = "Длина номера карты должны соответствовать 16 цифрам.")]
         public string? RecipientCardNumber { get; set; }
-        public decimal? PaymentAmount { get; set; }
+        public decimal PaymentAmount { get; set; }
     }
 }

@@ -5,12 +5,15 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace dbank.Application.Services.CashDeposits;
 
 public class CashDepositsService(BankDbContext context) : ICashDepositsService
 {
-    public async Task Create(CreateCashDepositDto deposit)
+    public async Task<CashDepositEntity> Create(CreateCashDepositDto deposit)
     {
+        var finalAmount = deposit.ComputeFinalAmount();
+        var accruedInterest = finalAmount - deposit.DepositAmount;
+        
         var entity = new CashDepositEntity
         {
             Name = deposit.DepositName,
@@ -18,9 +21,13 @@ public class CashDepositsService(BankDbContext context) : ICashDepositsService
             DepositPeriod = deposit.DepositPeriod,
             InterestRate = deposit.InterestRate,
             CustomerId = deposit.CustomerId,
+            FinalAmount = finalAmount,
+            AccruedInterest = accruedInterest,
         };
         await context.CashDeposits.AddAsync(entity);
         await context.SaveChangesAsync();
+        
+        return entity;
     }
 
     public async Task<CashDepositEntity> GetById(long depositId)
