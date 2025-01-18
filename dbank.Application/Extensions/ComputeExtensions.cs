@@ -1,6 +1,6 @@
 using dbank.Application.Models.CashDeposits;
 
-namespace dbank.Application.Extensions;
+namespace dbank.Application.ComputeExtensions;
 
 public static class CashDepositsExtensions
 {
