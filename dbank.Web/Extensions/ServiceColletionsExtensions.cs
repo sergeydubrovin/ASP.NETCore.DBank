@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using dbank.Domain;
-using dbank.Application.Abstractions;
+﻿using dbank.Application.Abstractions;
 using dbank.Application.Services;
+using dbank.Domain;
 using dbank.Domain.Options;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.HttpLogging;
 
 namespace dbank.Web.Extensions

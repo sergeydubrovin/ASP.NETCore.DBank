@@ -12,8 +12,8 @@ using dbank.Domain;
 namespace dbank.Domain.Migrations
 {
     [DbContext(typeof(BankDbContext))]
-    [Migration("20250114104555_name5")]
-    partial class name5
+    [Migration("20250117142932_Remove CurrencyEntity")]
+    partial class RemoveCurrencyEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,8 +73,8 @@ namespace dbank.Domain.Migrations
                     b.Property<decimal?>("DepositAmount")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal?>("DepositPeriod")
-                        .HasColumnType("numeric");
+                    b.Property<int?>("DepositPeriod")
+                        .HasColumnType("integer");
 
                     b.Property<decimal?>("FinalAmount")
                         .HasColumnType("numeric");
@@ -109,8 +109,8 @@ namespace dbank.Domain.Migrations
                     b.Property<decimal?>("CreditAmount")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal?>("CreditPeriod")
-                        .HasColumnType("numeric");
+                    b.Property<int?>("CreditPeriod")
+                        .HasColumnType("integer");
 
                     b.Property<long?>("CustomerId")
                         .HasColumnType("bigint");
@@ -118,45 +118,23 @@ namespace dbank.Domain.Migrations
                     b.Property<decimal?>("InitialPayment")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal?>("InterestRate")
+                    b.Property<decimal?>("InitialPaymentRate")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal?>("InterestCreditRate")
                         .HasColumnType("numeric");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
+
+                    b.Property<decimal?>("MonthlyPayment")
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Credits");
-                });
-
-            modelBuilder.Entity("dbank.Web.Domain.Entities.CurrencyEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("Eur")
-                        .HasColumnType("numeric");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<decimal>("Jpy")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("Usd")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("dbank.Web.Domain.Entities.CustomerEntity", b =>

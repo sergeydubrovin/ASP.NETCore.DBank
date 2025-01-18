@@ -1,4 +1,4 @@
-using dbank.Web.Application.Abstractions;
+using dbank.Application.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dbank.Web.Controllers;

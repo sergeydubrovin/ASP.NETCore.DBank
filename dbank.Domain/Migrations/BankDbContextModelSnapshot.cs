@@ -22,7 +22,7 @@ namespace dbank.Domain.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("dbank.Domain.Entities.BalanceEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.BalanceEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace dbank.Domain.Migrations
                     b.ToTable("Balances");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CashDepositEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CashDepositEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,7 +92,7 @@ namespace dbank.Domain.Migrations
                     b.ToTable("CashDeposits");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CreditEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CreditEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,38 +134,7 @@ namespace dbank.Domain.Migrations
                     b.ToTable("Credits");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CurrencyEntity", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("Eur")
-                        .HasColumnType("numeric");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<decimal>("Jpy")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("Usd")
-                        .HasColumnType("numeric");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Currencies");
-                });
-
-            modelBuilder.Entity("dbank.Domain.Entities.CustomerEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CustomerEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -207,7 +176,7 @@ namespace dbank.Domain.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.PaymentEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.PaymentEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -240,43 +209,43 @@ namespace dbank.Domain.Migrations
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.BalanceEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.BalanceEntity", b =>
                 {
-                    b.HasOne("dbank.Domain.Entities.CustomerEntity", "Customer")
+                    b.HasOne("dbank.Web.Domain.Entities.CustomerEntity", "Customer")
                         .WithOne("Balance")
-                        .HasForeignKey("dbank.Domain.Entities.BalanceEntity", "CustomerId");
+                        .HasForeignKey("dbank.Web.Domain.Entities.BalanceEntity", "CustomerId");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CashDepositEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CashDepositEntity", b =>
                 {
-                    b.HasOne("dbank.Domain.Entities.CustomerEntity", "Customer")
+                    b.HasOne("dbank.Web.Domain.Entities.CustomerEntity", "Customer")
                         .WithMany("CashDeposits")
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CreditEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CreditEntity", b =>
                 {
-                    b.HasOne("dbank.Domain.Entities.CustomerEntity", "Customer")
+                    b.HasOne("dbank.Web.Domain.Entities.CustomerEntity", "Customer")
                         .WithMany("Credits")
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.PaymentEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.PaymentEntity", b =>
                 {
-                    b.HasOne("dbank.Domain.Entities.CustomerEntity", "Customer")
+                    b.HasOne("dbank.Web.Domain.Entities.CustomerEntity", "Customer")
                         .WithMany("Payments")
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CustomerEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CustomerEntity", b =>
                 {
                     b.Navigation("Balance");
 

@@ -6,7 +6,7 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services.CashDeposits;
+namespace dbank.Application.Services;
 
 public class CashDepositsService(BankDbContext context) : ICashDepositsService
 {
@@ -37,7 +37,7 @@ public class CashDepositsService(BankDbContext context) : ICashDepositsService
 
         if (entity == null)
         {
-            throw new EntityNotFoundException($"Вклад с id {depositId} не найден.");
+            throw new EntityNotFoundException($"CashDeposit with id {depositId} not found.");
         }
 
         return entity;

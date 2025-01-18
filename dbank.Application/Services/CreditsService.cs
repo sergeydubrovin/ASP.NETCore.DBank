@@ -1,11 +1,12 @@
 using dbank.Application.Abstractions;
+using dbank.Application.Extensions;
 using dbank.Application.Models.Credits;
 using dbank.Domain;
 using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services.Credits;
+namespace dbank.Application.Services;
 
 public class CreditsService(BankDbContext context) : ICreditsService
 {
@@ -36,7 +37,7 @@ public class CreditsService(BankDbContext context) : ICreditsService
 
         if (entity == null)
         {
-            throw new EntityNotFoundException($"Кредит с id {creditId} не найден.");
+            throw new EntityNotFoundException($"Credit with id {creditId} not found.");
         }
         
         return entity;

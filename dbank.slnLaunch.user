@@ -3,7 +3,7 @@
     "Name": "Новый профиль",
     "Projects": [
       {
-        "Path": "dbank\\dbank.Web.csproj",
+        "Path": "dbank.Web\\dbank.Web.csproj",
         "Action": "Start"
       },
       {

@@ -6,7 +6,7 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services.Customers;
+namespace dbank.Application.Services;
 
 public class CustomersService(BankDbContext context) : ICustomersService
 {
@@ -34,7 +34,7 @@ public class CustomersService(BankDbContext context) : ICustomersService
 
         if (entity == null)
         {
-            throw new EntityNotFoundException($"Пользователь с id {customerId} на найден.");
+            throw new EntityNotFoundException($"Customer with id {customerId} not found.");
         }
         
         return entity.ToDto();

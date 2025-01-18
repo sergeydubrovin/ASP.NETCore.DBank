@@ -1,6 +1,6 @@
 using System.Text.Json;
-using dbank.Web.Application.Abstractions;
-using dbank.Web.Application.Models.Credits;
+using dbank.Application.Abstractions;
+using dbank.Application.Models.Credits;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dbank.Web.Controllers;

@@ -22,7 +22,5 @@ namespace dbank.Domain
         public DbSet<CashDepositEntity> CashDeposits { get; set; }
         
         public DbSet<CreditEntity> Credits { get; set; }
-        
-        public DbSet<CurrencyEntity> Currencies { get; set; }
     }
 }

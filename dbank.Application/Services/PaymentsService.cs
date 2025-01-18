@@ -1,4 +1,5 @@
 ﻿using dbank.Application.Abstractions;
+using dbank.Application.Extensions;
 using dbank.Application.Models.Payments;
 using dbank.Domain;
 using dbank.Domain.Entities;
@@ -6,7 +7,7 @@ using dbank.Domain.Exceptions;
 
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services.Payments;
+namespace dbank.Application.Services;
 
 public class PaymentsService(BankDbContext context) : IPaymentsService
 {
@@ -57,13 +58,13 @@ public class PaymentsService(BankDbContext context) : IPaymentsService
         {
             await transaction.RollbackAsync();
 
-            throw new PaymentErrorException($"Ошибка при обработке платежа. {ex.Message}");
+            throw new PaymentException($"Payment processing error. {ex.Message}");
         }
         catch (Exception ex)
         {
             await transaction.RollbackAsync();
 
-            throw new PaymentErrorException($"Непредвиденная ошибка при обработке платежа. {ex.Message}");
+            throw new PaymentException($"An unexpected error occurred while processing the payment. {ex.Message}");
         }
     }
     
@@ -73,7 +74,7 @@ public class PaymentsService(BankDbContext context) : IPaymentsService
 
         if (entity == null)
         {
-            throw new EntityNotFoundException($"Платеж по id {paymentId} не найден.");
+            throw new EntityNotFoundException($"Payment with id {paymentId} not found.");
         }
 
         return entity;

@@ -5,7 +5,7 @@ using dbank.Domain.Entities;
 using dbank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services.Balances;
+namespace dbank.Application.Services;
 
 public class BalancesService(BankDbContext context) : IBalancesService
 {
@@ -26,7 +26,7 @@ public class BalancesService(BankDbContext context) : IBalancesService
 
         if (balance == null)
         {
-            throw new EntityNotFoundException($"У пользователя с id {customerId} отсутствует баланс.");
+            throw new EntityNotFoundException($"User with id {customerId} has no balance entity.");
         }
         
         return balance;

@@ -25,7 +25,7 @@ namespace dbank.Domain.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("dbank.Domain.Entities.CustomerEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CustomerEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,7 +67,7 @@ namespace dbank.Domain.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.PaymentEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.PaymentEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,16 +97,16 @@ namespace dbank.Domain.Migrations
                     b.ToTable("Payments");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.PaymentEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.PaymentEntity", b =>
                 {
-                    b.HasOne("dbank.Domain.Entities.CustomerEntity", "Customer")
+                    b.HasOne("dbank.Web.Domain.Entities.CustomerEntity", "Customer")
                         .WithMany("Payments")
                         .HasForeignKey("CustomerId");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("dbank.Domain.Entities.CustomerEntity", b =>
+            modelBuilder.Entity("dbank.Web.Domain.Entities.CustomerEntity", b =>
                 {
                     b.Navigation("Payments");
                 });
