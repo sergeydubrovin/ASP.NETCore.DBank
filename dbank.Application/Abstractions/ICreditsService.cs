@@ -1,7 +1,7 @@
-using dbank.Application.Models.Credits;
-using dbank.Domain.Entities;
+using DBank.Application.Models.Credits;
+using DBank.Domain.Entities;
 
-namespace dbank.Application.Abstractions;
+namespace DBank.Application.Abstractions;
 
 public interface ICreditsService
 {

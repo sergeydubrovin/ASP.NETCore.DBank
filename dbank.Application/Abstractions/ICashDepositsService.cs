@@ -1,7 +1,7 @@
-using dbank.Application.Models.CashDeposits;
-using dbank.Domain.Entities;
+using DBank.Application.Models.CashDeposits;
+using DBank.Domain.Entities;
 
-namespace dbank.Application.Abstractions;
+namespace DBank.Application.Abstractions;
 
 public interface ICashDepositsService
 {

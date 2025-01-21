@@ -1,7 +1,7 @@
-﻿using dbank.Application.Models.Payments;
-using dbank.Domain.Entities;
+﻿using DBank.Application.Models.Payments;
+using DBank.Domain.Entities;
 
-namespace dbank.Application.Abstractions
+namespace DBank.Application.Abstractions
 {
     public interface IPaymentsService
     {

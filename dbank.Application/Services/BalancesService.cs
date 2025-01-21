@@ -1,11 +1,11 @@
-using dbank.Application.Abstractions;
-using dbank.Application.Models.Balances;
-using dbank.Domain;
-using dbank.Domain.Entities;
-using dbank.Domain.Exceptions;
+using DBank.Application.Abstractions;
+using DBank.Application.Models.Balances;
+using DBank.Domain;
+using DBank.Domain.Entities;
+using DBank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace DBank.Application.Services;
 
 public class BalancesService(BankDbContext context) : IBalancesService
 {

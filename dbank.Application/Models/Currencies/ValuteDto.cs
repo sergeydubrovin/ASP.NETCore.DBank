@@ -1,7 +1,7 @@
-namespace dbank.Application.Models.Сurrencies;
+namespace DBank.Application.Models.Currencies;
 
 public class ValuteDto
-{ 
+{
     public ValuteItemDto JPY { get; set; }
     public ValuteItemDto USD { get; set; }
     public ValuteItemDto EUR { get; set; }

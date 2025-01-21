@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace dbank.Application.Models.Payments
+namespace DBank.Application.Models.Payments
 {
     public class CreatePaymentDto
     {

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using dbank.Domain;
+using DBank.Domain;
 
 #nullable disable
 
-namespace dbank.Domain.Migrations
+namespace DBank.Domain.Migrations
 {
     [DbContext(typeof(BankDbContext))]
     [Migration("20250114104555_name5")]

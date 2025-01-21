@@ -1,9 +1,9 @@
 using System.Text.Json;
-using dbank.Application.Abstractions;
-using dbank.Application.Models.Balances;
+using DBank.Application.Abstractions;
+using DBank.Application.Models.Balances;
 using Microsoft.AspNetCore.Mvc;
 
-namespace dbank.Web.Controllers;
+namespace DBank.Web.Controllers;
 
 [Route("api/balances")]
 public class BalancesController(IBalancesService balancesService,

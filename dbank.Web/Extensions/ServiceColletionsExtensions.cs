@@ -1,12 +1,13 @@
-﻿using dbank.Application.Abstractions;
-using dbank.Application.Services;
-using dbank.Domain;
-using dbank.Domain.Options;
+﻿using DBank.Application.Abstractions;
+using DBank.Application.Services;
+using DBank.Domain;
+using DBank.Domain.Options;
+using DBank.Web.BackgroundServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.HttpLogging;
 
-namespace dbank.Web.Extensions
+namespace DBank.Web.Extensions
 {
     public static class ServiceCollectionsExtensions
     {
@@ -58,12 +59,22 @@ namespace dbank.Web.Extensions
 
         public static WebApplicationBuilder AddData(this WebApplicationBuilder builder)
         {
-            builder.Services.AddDbContext<BankDbContext>(opt =>
-                opt.UseNpgsql(builder.Configuration.GetConnectionString("Db")));
+            builder.Services.AddDbContext<BankDbContext>(option =>
+                option.UseNpgsql(builder.Configuration.GetConnectionString("Db")));
 
             return builder;
         }
 
+        public static WebApplicationBuilder AddCache(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddStackExchangeRedisCache(option =>
+            {
+                option.Configuration = builder.Configuration.GetConnectionString("Redis");
+            });
+            
+            return builder;
+        }
+        
         public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<ICustomersService, CustomersService>();
@@ -77,11 +88,19 @@ namespace dbank.Web.Extensions
 
         public static WebApplicationBuilder AddIntegrationServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddScoped<ICurrencyImporter, CurrencyImporter>();
+            builder.Services.AddScoped<ICurrenciesImporter, CurrenciesImporter>();
+            builder.Services.AddScoped<ICurrenciesService, CurrenciesService>();
             
             return builder;
         }
 
+        public static WebApplicationBuilder AddHostedServices(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddHostedService<CurrenciesBackground>();
+            
+            return builder;
+        }
+        
         public static WebApplicationBuilder AddHttpClients(this WebApplicationBuilder builder)
         {
             builder.Services.AddHttpClient("Cb", client =>

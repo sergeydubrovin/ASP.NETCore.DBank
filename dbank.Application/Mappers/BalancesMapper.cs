@@ -1,7 +1,7 @@
-using dbank.Application.Models.Balances;
-using dbank.Domain.Entities;
+using DBank.Application.Models.Balances;
+using DBank.Domain.Entities;
 
-namespace dbank.Application.Mappers;
+namespace DBank.Application.Mappers;
 
 public static class BalancesMapper
 {

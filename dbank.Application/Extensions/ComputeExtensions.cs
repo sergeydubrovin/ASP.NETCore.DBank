@@ -1,10 +1,10 @@
-using dbank.Application.Models.CashDeposits;
-using dbank.Application.Models.Credits;
-using dbank.Application.Models.Payments;
-using dbank.Domain.Entities;
-using dbank.Domain.Exceptions;
+using DBank.Application.Models.CashDeposits;
+using DBank.Application.Models.Credits;
+using DBank.Application.Models.Payments;
+using DBank.Domain.Entities;
+using DBank.Domain.Exceptions;
 
-namespace dbank.Application.Extensions;
+namespace DBank.Application.Extensions;
 
 public static class ComputeExtensions
 {

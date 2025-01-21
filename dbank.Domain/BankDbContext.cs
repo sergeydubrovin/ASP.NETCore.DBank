@@ -1,7 +1,7 @@
-﻿using dbank.Domain.Entities;
+﻿using DBank.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Domain
+namespace DBank.Domain
 {
     public sealed class BankDbContext : DbContext
     {

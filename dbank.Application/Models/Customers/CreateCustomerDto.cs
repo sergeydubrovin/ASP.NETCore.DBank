@@ -1,4 +1,4 @@
-namespace dbank.Application.Models.Customers;
+namespace DBank.Application.Models.Customers;
 
 public class CreateCustomerDto
 {
@@ -8,6 +8,5 @@ public class CreateCustomerDto
     public string? MiddleName { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
-    public decimal? Balance { get; set; }
     public DateTime? BirthDate { get; set; }
 }

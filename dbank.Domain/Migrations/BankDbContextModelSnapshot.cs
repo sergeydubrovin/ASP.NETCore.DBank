@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using dbank.Domain;
+using DBank.Domain;
 
 #nullable disable
 
-namespace dbank.Domain.Migrations
+namespace DBank.Domain.Migrations
 {
     [DbContext(typeof(BankDbContext))]
     partial class BankDbContextModelSnapshot : ModelSnapshot

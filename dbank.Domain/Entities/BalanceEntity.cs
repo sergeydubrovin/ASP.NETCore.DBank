@@ -1,4 +1,4 @@
-namespace dbank.Domain.Entities;
+namespace DBank.Domain.Entities;
 
 public class BalanceEntity : BaseEntity
 {

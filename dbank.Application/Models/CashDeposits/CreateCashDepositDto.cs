@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace dbank.Application.Models.CashDeposits;
+namespace DBank.Application.Models.CashDeposits;
 
 public class CreateCashDepositDto
 {

@@ -1,13 +1,12 @@
-﻿using dbank.Application.Abstractions;
-using dbank.Application.Extensions;
-using dbank.Application.Models.Payments;
-using dbank.Domain;
-using dbank.Domain.Entities;
-using dbank.Domain.Exceptions;
-
+﻿using DBank.Application.Abstractions;
+using DBank.Application.Extensions;
+using DBank.Application.Models.Payments;
+using DBank.Domain;
+using DBank.Domain.Entities;
+using DBank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace DBank.Application.Services;
 
 public class PaymentsService(BankDbContext context) : IPaymentsService
 {

@@ -1,6 +1,6 @@
-using dbank.Application.Models.Customers;
+using DBank.Application.Models.Customers;
 
-namespace dbank.Application.Abstractions;
+namespace DBank.Application.Abstractions;
 
 public interface ICustomersService
 {

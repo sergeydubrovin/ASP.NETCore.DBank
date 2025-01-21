@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace dbank.Application.Models.Credits;
+namespace DBank.Application.Models.Credits;
 
 public class CreateCreditDto
 {

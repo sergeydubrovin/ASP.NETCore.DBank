@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace dbank.Domain.Migrations
+namespace DBank.Domain.Migrations
 {
     /// <inheritdoc />
     public partial class name6 : Migration

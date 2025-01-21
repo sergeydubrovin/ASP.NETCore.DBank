@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
-using dbank.Application.Abstractions;
-using dbank.Application.Models.Payments;
+using DBank.Application.Abstractions;
+using DBank.Application.Models.Payments;
 using Microsoft.AspNetCore.Mvc;
 
-namespace dbank.Web.Controllers
+namespace DBank.Web.Controllers
 {
     [Route("api/payments")]
     public class PaymentsController(IPaymentsService paymentsService, 

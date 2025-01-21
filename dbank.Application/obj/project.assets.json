@@ -922,7 +922,7 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "dbank.Domain/1.0.0": {
+      "DBank.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -930,10 +930,10 @@
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "compile": {
-          "bin/placeholder/dbank.Domain.dll": {}
+          "bin/placeholder/DBank.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/dbank.Domain.dll": {}
+          "bin/placeholder/DBank.Domain.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -2581,19 +2581,19 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "dbank.Domain/1.0.0": {
+    "DBank.Domain/1.0.0": {
       "type": "project",
-      "path": "../dbank.Domain/dbank.Domain.csproj",
-      "msbuildProject": "../dbank.Domain/dbank.Domain.csproj"
+      "path": "../DBank.Domain/DBank.Domain.csproj",
+      "msbuildProject": "../DBank.Domain/DBank.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DBank.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.11",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.11",
       "Swashbuckle.AspNetCore >= 6.6.2",
-      "Swashbuckle.AspNetCore.Annotations >= 7.2.0",
-      "dbank.Domain >= 1.0.0"
+      "Swashbuckle.AspNetCore.Annotations >= 7.2.0"
     ]
   },
   "packageFolders": {
@@ -2603,11 +2603,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Application\\dbank.Application.csproj",
-      "projectName": "dbank.Application",
-      "projectPath": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Application\\dbank.Application.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\DBank.Application\\DBank.Application.csproj",
+      "projectName": "DBank.Application",
+      "projectPath": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\DBank.Application\\DBank.Application.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\dbank.Application\\obj\\",
+      "outputPath": "C:\\Users\\PC\\RiderProjects\\ASP.NETCore.dbank\\DBank.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

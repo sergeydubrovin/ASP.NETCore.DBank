@@ -1,12 +1,12 @@
-using dbank.Application.Abstractions;
-using dbank.Application.Mappers;
-using dbank.Application.Models.Customers;
-using dbank.Domain;
-using dbank.Domain.Entities;
-using dbank.Domain.Exceptions;
+using DBank.Application.Abstractions;
+using DBank.Application.Mappers;
+using DBank.Application.Models.Customers;
+using DBank.Domain;
+using DBank.Domain.Entities;
+using DBank.Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
-namespace dbank.Application.Services;
+namespace DBank.Application.Services;
 
 public class CustomersService(BankDbContext context) : ICustomersService
 {
@@ -29,7 +29,10 @@ public class CustomersService(BankDbContext context) : ICustomersService
     public async Task<CustomerDto> GetById(long customerId)
     {
         var entity = await context.Customers
+            .Include(c => c.CashDeposits)
             .Include(b => b.Balance)
+            .Include(p => p.Payments)
+            .Include(c => c.Credits)
             .FirstOrDefaultAsync(e => e.Id == customerId);
 
         if (entity == null)

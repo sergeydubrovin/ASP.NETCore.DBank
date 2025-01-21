@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace dbank.Application.Models.Сurrencies;
+namespace DBank.Application.Models.Currencies;
 
 public class ValuteItemDto
 {

@@ -1,9 +1,9 @@
 using System.Text.Json;
-using dbank.Application.Abstractions;
-using dbank.Application.Models.Credits;
+using DBank.Application.Abstractions;
+using DBank.Application.Models.Credits;
 using Microsoft.AspNetCore.Mvc;
 
-namespace dbank.Web.Controllers;
+namespace DBank.Web.Controllers;
 
 [Route("api/credits")]
 public class CreditsController(ICreditsService creditsService, 

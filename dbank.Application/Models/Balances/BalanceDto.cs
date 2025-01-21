@@ -1,4 +1,4 @@
-namespace dbank.Application.Models.Balances;
+namespace DBank.Application.Models.Balances;
 
 public class BalanceDto
 {

@@ -1,9 +1,9 @@
 using System.Text.Json;
-using dbank.Application.Abstractions;
-using dbank.Application.Models.CashDeposits;
+using DBank.Application.Abstractions;
+using DBank.Application.Models.CashDeposits;
 using Microsoft.AspNetCore.Mvc;
 
-namespace dbank.Web.Controllers;
+namespace DBank.Web.Controllers;
 
 [Route("api/cash-deposits")]
 public class CashDepositsController(ICashDepositsService depositsService, 

@@ -1,4 +1,4 @@
-using dbank.Web.Extensions;
+using DBank.Web.Extensions;
 using SwaggerThemes;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +10,10 @@ builder
     .AddLogging()
     .AddSwagger()
     .AddData()
+    .AddCache()
     .AddApplicationServices()
     .AddIntegrationServices()
+    .AddHostedServices()
     .AddHttpClients()
     .AddOptions();
 
