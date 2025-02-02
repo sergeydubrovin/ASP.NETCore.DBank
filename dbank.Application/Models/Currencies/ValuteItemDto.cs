@@ -5,7 +5,7 @@ namespace DBank.Application.Models.Currencies;
 public class ValuteItemDto
 {
     [JsonPropertyName("ID")]
-    public string Id { get; set; } = null!;
+    public required string Id { get; set; }
     
     public string? NumCode { get; set; }
     public string? CharCode { get; set; }

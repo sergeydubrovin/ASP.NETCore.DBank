@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace DBank.Domain.Entities;
 
 public class CashDepositEntity : BaseEntity
@@ -7,7 +9,15 @@ public class CashDepositEntity : BaseEntity
     public string? Name { get; set; }
     public decimal? DepositAmount { get; set; }
     public int? DepositPeriod { get; set; }
-    public decimal InterestRate { get; set; }   // процентная ставка%
+    /// <summary>
+    /// Процентная ставка%
+    /// </summary>
+    public decimal InterestRate { get; set; }
+    
     public decimal? FinalAmount { get; set; }
-    public decimal? AccruedInterest  { get; set; }   // начисленные проценты%
+    
+    /// <summary>
+    /// Начисленные проценты%
+    /// </summary>
+    public decimal? AccruedInterest  { get; set; }
 }

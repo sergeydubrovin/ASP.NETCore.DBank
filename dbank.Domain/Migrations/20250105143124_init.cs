@@ -34,7 +34,7 @@ namespace DBank.Domain.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
+                name: "Transactions",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -57,7 +57,7 @@ namespace DBank.Domain.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_CustomerId",
-                table: "Payments",
+                table: "Transactions",
                 column: "CustomerId");
         }
 
@@ -65,7 +65,7 @@ namespace DBank.Domain.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Payments");
+                name: "Transactions");
 
             migrationBuilder.DropTable(
                 name: "Customers");

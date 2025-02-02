@@ -4,6 +4,8 @@ namespace DBank.Application.Abstractions;
 
 public interface ICustomersService
 {
-    Task Create(CreateCustomerDto customer);
+    Task<string> Create(CreateCustomerDto customer);
+    Task<bool> Verify(string verificationCode, string userId);
+    Task Save(string verificationCode, string userId);
     Task<CustomerDto> GetById(long customerId);
 }

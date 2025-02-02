@@ -16,7 +16,7 @@ public class CashDepositsController(ICashDepositsService depositsService,
         
         var result = await depositsService.Create(dto);
 
-        logger.LogInformation($"Method api/cash-deposits Create finished. Request: {JsonSerializer.Serialize(dto)}" +
+        logger.LogInformation($"Method api/cash-deposits Create completed. Request: {JsonSerializer.Serialize(dto)}" +
                               $"Response: {JsonSerializer.Serialize(result)}");
         
         return Ok(result);
@@ -29,7 +29,7 @@ public class CashDepositsController(ICashDepositsService depositsService,
         
         var result = await depositsService.GetById(depositId);
         
-        logger.LogInformation($"Method api/cash-deposits/{depositId} GetById finished." + 
+        logger.LogInformation($"Method api/cash-deposits/{depositId} GetById completed." + 
                               $"Response: {JsonSerializer.Serialize(result)}");
         
         return Ok(result);
@@ -42,7 +42,7 @@ public class CashDepositsController(ICashDepositsService depositsService,
         
         var result = await depositsService.GetByUser(customerId);
         
-        logger.LogInformation($"Method api/cash-deposits/customer/{customerId} GetByUser finished. " +
+        logger.LogInformation($"Method api/cash-deposits/customer/{customerId} GetByUser completed. " +
                               $"Result count: {result.Count}.");
         
         return Ok(result);
@@ -55,7 +55,7 @@ public class CashDepositsController(ICashDepositsService depositsService,
         
         var result = await depositsService.GetAll();
         
-        logger.LogInformation($"Method api/cash-deposits GetAll finished. Result count: {result.Count}");
+        logger.LogInformation($"Method api/cash-deposits GetAll completed. Result count: {result.Count}");
         
         return Ok(result);
     }

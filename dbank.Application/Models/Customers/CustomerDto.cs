@@ -8,6 +8,6 @@ public class CustomerDto : CreateCustomerDto
     public long Id { get; set; }
     public decimal? Balance { get; set; }
     public int CashDepositsCount { get; set; }
-    public int PaymentsCount { get; set; }
+    public int TransactionsCount { get; set; }
     public int CreditsCount { get; set; }
 }

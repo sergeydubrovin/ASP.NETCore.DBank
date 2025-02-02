@@ -1,6 +1,6 @@
 using DBank.Application.Models.CashDeposits;
 using DBank.Application.Models.Credits;
-using DBank.Application.Models.Payments;
+using DBank.Application.Models.Transactions;
 using DBank.Domain.Entities;
 using DBank.Domain.Exceptions;
 
@@ -50,7 +50,7 @@ public static class ComputeExtensions
         return Math.Round(monthlyPayment);
     }
     
-    public static void ValidationPayment(this CreatePaymentDto? payment, CustomerEntity? sender,
+    public static void ValidationTransaction(this CreateTransactionsDto? payment, CustomerEntity? sender,
         CustomerEntity? recipient)
     {
         switch (sender, recipient)
@@ -60,13 +60,13 @@ public static class ComputeExtensions
 
             case (_, null):
                 throw new EntityNotFoundException(
-                    $"The recipient with card number {payment!.RecipientCardNumber} not found.");
+                    $"The recipient with card number {payment!.RecipientCard} not found.");
 
             case ({ Balance: null }, _):
                 throw new EntityNotFoundException($"The sender with id {payment!.CustomerId} doesn't have open balance.");
 
             case ({ Balance: { Balance: var senderBalance } }, _)
-                when senderBalance < payment!.PaymentAmount:
+                when senderBalance < payment!.TransactionAmount:
                 throw new EntityNotFoundException("There are insufficient funds on balance.");
         }
     }

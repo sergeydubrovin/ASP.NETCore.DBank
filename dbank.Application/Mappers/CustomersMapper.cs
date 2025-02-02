@@ -12,7 +12,7 @@ public static class CustomersMapper
         {
             Id = entity.Id,
             CustomerId = entity.CustomerId!.Value,
-            CardNumber = entity.CardNumber,
+            Card = entity.Card,
             Phone = entity.Phone,
             FirstName = entity.FirstName,
             LastName = entity.LastName,
@@ -20,7 +20,7 @@ public static class CustomersMapper
             BirthDate = entity.BirthDate,
             Balance = balance == null ? entity.Balance?.ToDto().Balance : balance.ToDto().Balance,
             CashDepositsCount = entity.CashDeposits!.Count,
-            PaymentsCount = entity.Payments!.Count,
+            TransactionsCount = entity.Transactions!.Count,
             CreditsCount = entity.Credits!.Count,
         };
     }
@@ -30,11 +30,11 @@ public static class CustomersMapper
         return new CustomerEntity
         {
             CustomerId = entity.CustomerId,
-            CardNumber = entity.CardNumber,
-            Phone = entity.Phone,
+            Card = entity.Card!,
+            Phone = entity.Phone!,
             FirstName = entity.FirstName,
             LastName = entity.LastName,
-            MiddleName = entity.MiddleName,
+            MiddleName = entity.MiddleName!,
             BirthDate = entity.BirthDate,
             Balance = balance?.ToEntity(),
         };

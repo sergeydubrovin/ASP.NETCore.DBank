@@ -1,11 +1,20 @@
-﻿using DBank.Application.Abstractions;
+﻿using System.Text;
+using DBank.Application.Abstractions;
 using DBank.Application.Services;
 using DBank.Domain;
+using DBank.Domain.Entities;
+using DBank.Domain.Models;
 using DBank.Domain.Options;
 using DBank.Web.BackgroundServices;
+using Hangfire;
+using Hangfire.PostgreSql;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.HttpLogging;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DBank.Web.Extensions
 {
@@ -25,7 +34,7 @@ namespace DBank.Web.Extensions
             {
                 option.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "API",
+                    Title = "DBank API",
                     Version = "v1"
                 });
 
@@ -64,7 +73,7 @@ namespace DBank.Web.Extensions
 
             return builder;
         }
-
+        
         public static WebApplicationBuilder AddCache(this WebApplicationBuilder builder)
         {
             builder.Services.AddStackExchangeRedisCache(option =>
@@ -75,13 +84,25 @@ namespace DBank.Web.Extensions
             return builder;
         }
         
+        public static WebApplicationBuilder AddHangfire(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddHangfire(config => config
+                .UsePostgreSqlStorage(options =>
+                    options.UseNpgsqlConnection(builder.Configuration.GetConnectionString("Hangfire"))));
+            
+            builder.Services.AddHangfireServer();
+            
+            return builder;
+        }
+        
         public static WebApplicationBuilder AddApplicationServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddScoped<ICustomersService, CustomersService>();
-            builder.Services.AddScoped<IPaymentsService, PaymentsService>();
+            builder.Services.AddScoped<ITransactionsService, TransactionsService>();
             builder.Services.AddScoped<IBalancesService, BalancesService>();
             builder.Services.AddScoped<ICashDepositsService, CashDepositsService>();
             builder.Services.AddScoped<ICreditsService, CreditsService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             return builder;
         }
@@ -94,9 +115,52 @@ namespace DBank.Web.Extensions
             return builder;
         }
 
-        public static WebApplicationBuilder AddHostedServices(this WebApplicationBuilder builder)
+        public static WebApplicationBuilder AddBackgroundServices(this WebApplicationBuilder builder)
         {
-            builder.Services.AddHostedService<CurrenciesBackground>();
+            builder.Services.AddHostedService<CurrenciesRefreshSchedule>();
+            builder.Services.AddHostedService<RabbitMqConsumer>();
+            builder.Services.AddSingleton<RabbitMqProducer>();
+            builder.Services.AddSingleton<IRabbitMqProducer>(provider => provider.GetRequiredService<RabbitMqProducer>());
+            
+            return builder;
+        }
+
+        public static WebApplicationBuilder AddBearerTokenAuthentication(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddAuthentication(x => 
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x => 
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.UseSecurityTokenValidators = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(
+                        builder.Configuration["JWT:TokenPrivateKey"]!)),
+                    ValidIssuer = builder.Configuration["JWT:TokenIssuer"],
+                    ValidAudience = builder.Configuration["JWT:TokenAudience"],
+                };
+            });
+            builder.Services.AddAuthorizationBuilder()
+                .AddPolicy("Admin", policy => policy.RequireRole(RoleСonstants.Admin))
+                .AddPolicy("User", policy => policy.RequireRole(RoleСonstants.User));
+
+            builder.Services.AddDefaultIdentity<UserEntity>(options => 
+            {
+                options.Password.RequiredLength = 6;
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<BankDbContext>()
+            .AddUserManager<UserManager<UserEntity>>()
+            .AddUserStore<UserStore<UserEntity, IdentityRoleEntity, BankDbContext, long>>();
+            
+            builder.Services.AddScoped<IIdentityService, IdentityService>();
+            builder.Services.AddScoped<IJwtGenerateService, JwtGenerateService>();
             
             return builder;
         }
@@ -114,6 +178,10 @@ namespace DBank.Web.Extensions
         public static WebApplicationBuilder AddOptions(this WebApplicationBuilder builder)
         {
             builder.Services.Configure<CbOptions>(builder.Configuration.GetSection("Integrations:CbImporter"));
+            builder.Services.Configure<RedisOptions>(builder.Configuration.GetSection("Redis"));
+            builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JWT"));
+            builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMq"));
+            builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
             
             return builder;
         }

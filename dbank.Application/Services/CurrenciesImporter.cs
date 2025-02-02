@@ -26,11 +26,11 @@ public class CurrenciesImporter(IOptions<CbOptions> cbOptions, IHttpClientFactor
                 return deserializeResponse?.Valute!;
             }
 
-            throw new CurrencyException($"Import currencies failed. Error: {stringContent} Status Code: {response.StatusCode}");
+            throw new Exception($"Import currencies failed. Error: {stringContent} Status Code: {response.StatusCode}");
         }
         catch(Exception ex)
         {
-            throw new CurrencyException($"Import currencies failed. Error: {ex.Message}");
+            throw new Exception($"{ex.Message}");
         }
     }
 }

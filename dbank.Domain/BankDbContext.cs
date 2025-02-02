@@ -1,9 +1,10 @@
 ﻿using DBank.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DBank.Domain
 {
-    public sealed class BankDbContext : DbContext
+    public sealed class BankDbContext : IdentityDbContext<UserEntity, IdentityRoleEntity, long>
     {
         public BankDbContext(DbContextOptions<BankDbContext> options) : base(options)
         {
@@ -17,7 +18,7 @@ namespace DBank.Domain
 
         public DbSet<BalanceEntity> Balances { get; set; }
 
-        public DbSet<PaymentEntity> Payments { get; set; }
+        public DbSet<TransactionEntity> Transactions { get; set; }
 
         public DbSet<CashDepositEntity> CashDeposits { get; set; }
         

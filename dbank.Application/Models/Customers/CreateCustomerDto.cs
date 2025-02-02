@@ -2,11 +2,12 @@ namespace DBank.Application.Models.Customers;
 
 public class CreateCustomerDto
 {
-    public long? CustomerId { get; set; }
-    public string? CardNumber { get; set; }
-    public string? Phone { get; set; }
-    public string? MiddleName { get; set; }
-    public string FirstName { get; set; } = null!;
-    public string LastName { get; set; } = null!;
+    public long CustomerId { get; set; }
+    public required string Card { get; set; }
+    public required string Phone { get; set; }
+    public required string MiddleName { get; set; }
+    public required string FirstName { get; set; } 
+    public required string LastName { get; set; }
+    public string Email { get; set; }
     public DateTime? BirthDate { get; set; }
 }

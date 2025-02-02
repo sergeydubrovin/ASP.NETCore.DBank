@@ -4,6 +4,7 @@ namespace DBank.Application.Abstractions;
 
 public interface ICurrenciesService
 {
-    Task UpdateCurrenciesCache();
+    Task RefreshCurrencyCache();
     Task<ValuteItemDto> GetByCurrencyCode(string currencyCode);
+    Task<CurrencyConvertResponse> CurrencyConverter(string currencyCode, decimal amountRubles);
 }

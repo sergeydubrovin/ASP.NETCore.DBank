@@ -16,7 +16,7 @@ public class CreditsController(ICreditsService creditsService,
         
         var result = await creditsService.Create(dto);
         
-        logger.LogInformation($"Method api/credits Create finished. Request: {JsonSerializer.Serialize(dto)}" +
+        logger.LogInformation($"Method api/credits Create completed. Request: {JsonSerializer.Serialize(dto)}" +
                               $"Response: {JsonSerializer.Serialize(result)}");
         
         return Ok(result);
@@ -29,7 +29,7 @@ public class CreditsController(ICreditsService creditsService,
         
         var result = await creditsService.GetById(creditId);
         
-        logger.LogInformation($"Method api/credits/{creditId} GetById finished." + 
+        logger.LogInformation($"Method api/credits/{creditId} GetById completed." + 
                               $"Response: {JsonSerializer.Serialize(result)}");
         
         return Ok(result);
@@ -42,7 +42,7 @@ public class CreditsController(ICreditsService creditsService,
         
         var result = await creditsService.GetByUser(customerId);
         
-        logger.LogInformation($"Method api/credits/customer/{customerId} GetByUser finished. " +
+        logger.LogInformation($"Method api/credits/customer/{customerId} GetByUser completed. " +
                               $"Result count: {result.Count}.");
         
         return Ok(result);
@@ -55,7 +55,7 @@ public class CreditsController(ICreditsService creditsService,
         
         var result = await creditsService.GetAll();
         
-        logger.LogInformation($"Method api/credits GetAll finished. Result count: {result.Count}.");
+        logger.LogInformation($"Method api/credits GetAll completed. Result count: {result.Count}.");
         
         return Ok(result);
     }

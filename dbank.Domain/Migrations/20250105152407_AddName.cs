@@ -12,7 +12,7 @@ namespace DBank.Domain.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "Name",
-                table: "Payments",
+                table: "Transactions",
                 type: "text",
                 nullable: true);
         }
@@ -22,7 +22,7 @@ namespace DBank.Domain.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Name",
-                table: "Payments");
+                table: "Transactions");
         }
     }
 }

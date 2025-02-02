@@ -16,7 +16,7 @@ public class BalancesController(IBalancesService balancesService,
         
         await balancesService.Create(dto);
 
-        logger.LogInformation($"Method api/balances Create finished. Request: {JsonSerializer.Serialize(dto)}" +
+        logger.LogInformation($"Method api/balances Create completed. Request: {JsonSerializer.Serialize(dto)}" +
                               $"Response: {JsonSerializer.Serialize(dto)}");
         
         return Ok();
@@ -29,7 +29,7 @@ public class BalancesController(IBalancesService balancesService,
         
         var result = await balancesService.GetByUser(customerId);
 
-        logger.LogInformation($"Method api/balances/customer/{customerId} GetByUser finished.");
+        logger.LogInformation($"Method api/balances/customer/{customerId} GetByUser completed.");
         
         return Ok(result);
     }
