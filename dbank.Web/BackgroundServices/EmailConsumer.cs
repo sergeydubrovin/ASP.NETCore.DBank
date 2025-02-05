@@ -1,7 +1,10 @@
 using System.Text;
+using System.Text.Json;
 using DBank.Application.Abstractions;
 using DBank.Application.Models.Email;
+using DBank.Application.Models.RabbitMq;
 using DBank.Domain.Options;
+using DBank.Web.Extensions;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -10,21 +13,21 @@ namespace DBank.Web.BackgroundServices;
 
 public class EmailConsumer : BackgroundService
 {
-    private readonly RabbitMqOptions _rabbitMqOptions;
+    private readonly RabbitMqOptions _rabbitOptions;
     private IChannel _channel;
     private readonly IServiceProvider _serviceProvider;
 
     public EmailConsumer(IOptions<RabbitMqOptions> rabbitMqOptions, IServiceProvider serviceProvider)
     {
-        _rabbitMqOptions = rabbitMqOptions.Value;
+        _rabbitOptions = rabbitMqOptions.Value;
         _serviceProvider = serviceProvider;
         var factory = new ConnectionFactory
         {
-            HostName = _rabbitMqOptions.Host,
-            Port = _rabbitMqOptions.Port,
-            UserName = _rabbitMqOptions.Username,
-            Password = _rabbitMqOptions.Password,
-            VirtualHost = _rabbitMqOptions.VirtualHost
+            HostName = _rabbitOptions.Host,
+            Port = _rabbitOptions.Port,
+            UserName = _rabbitOptions.Username,
+            Password = _rabbitOptions.Password,
+            VirtualHost = _rabbitOptions.VirtualHost
         };
         
         var connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();
@@ -37,55 +40,28 @@ public class EmailConsumer : BackgroundService
 
         var factory = new ConnectionFactory
         {
-            HostName = _rabbitMqOptions.Host,
-            Port = _rabbitMqOptions.Port,
-            UserName = _rabbitMqOptions.Username,
-            Password = _rabbitMqOptions.Password,
-            VirtualHost = _rabbitMqOptions.VirtualHost,
+            HostName = _rabbitOptions.Host,
+            Port = _rabbitOptions.Port,
+            UserName = _rabbitOptions.Username,
+            Password = _rabbitOptions.Password,
+            VirtualHost = _rabbitOptions.VirtualHost,
         };
         var connection = factory.CreateConnectionAsync(stoppingToken).GetAwaiter().GetResult();
         _channel = connection.CreateChannelAsync(cancellationToken: stoppingToken).GetAwaiter().GetResult();
         
-        await _channel.ExchangeDeclareAsync(
-            exchange: _rabbitMqOptions.ExchangeName,
-            type: _rabbitMqOptions.ExchangeType,
-            durable: true,
-            autoDelete: false,
-            arguments: null,
-            cancellationToken: stoppingToken
-        );
+        await _channel.DeclareExchangeAsync(_rabbitOptions.ExchangeName, 
+                                            _rabbitOptions.ExchangeType, stoppingToken);
+        
+        await _channel.DeclareQueueAsync(_rabbitOptions.QueueNameTransact, stoppingToken);
+ 
+        await _channel.BindQueueAsync(_rabbitOptions.QueueNameTransact, _rabbitOptions.ExchangeName, 
+                                      _rabbitOptions.QueueNameTransact, stoppingToken);
 
-        await _channel.QueueDeclareAsync(
-            queue: _rabbitMqOptions.QueueNameTransact,
-            durable: true,
-            exclusive: false,
-            autoDelete: false,
-            arguments: null,
-            cancellationToken: stoppingToken
-        );
+        await _channel.DeclareQueueAsync(_rabbitOptions.QueueNameWelcome, stoppingToken);
 
-        await _channel.QueueBindAsync(
-            queue: _rabbitMqOptions.QueueNameTransact,
-            exchange: _rabbitMqOptions.ExchangeName,
-            routingKey: _rabbitMqOptions.QueueNameTransact,
-            cancellationToken: stoppingToken
-        );
-
-        await _channel.QueueDeclareAsync(
-            queue: _rabbitMqOptions.QueueNameWelcome,
-            durable: true,
-            exclusive: false,
-            autoDelete: false,
-            arguments: null,
-            cancellationToken: stoppingToken
-        );
-
-        await _channel.QueueBindAsync(
-            queue: _rabbitMqOptions.QueueNameWelcome,
-            exchange: _rabbitMqOptions.ExchangeName,
-            routingKey: _rabbitMqOptions.QueueNameWelcome,
-            cancellationToken: stoppingToken
-        );
+        await _channel.BindQueueAsync(_rabbitOptions.QueueNameWelcome, _rabbitOptions.ExchangeName, 
+                                     _rabbitOptions.QueueNameWelcome, stoppingToken);
+       
         
         var consumer = new AsyncEventingBasicConsumer(_channel);
         consumer.ReceivedAsync += async (_, ea) =>
@@ -93,14 +69,14 @@ public class EmailConsumer : BackgroundService
             try
             {
                 var body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-
-                var messageParts = message.Split("|");
+                var jsonMessage = Encoding.UTF8.GetString(body);
+                var message = JsonSerializer.Deserialize<CreatePublishMessage>(jsonMessage);
+                
                 var emailMessage = new CreateEmailMessage
                 {
-                    RecipientEmail = messageParts[0],
-                    Subject = messageParts[1],
-                    Body= messageParts[2]
+                    RecipientEmail = message!.RecipientEmail,
+                    Subject = message.Subject,
+                    Body = message.Body
                 };
                     
                 using var scope = _serviceProvider.CreateScope();
@@ -109,16 +85,16 @@ public class EmailConsumer : BackgroundService
                 
                 await _channel.BasicAckAsync(ea.DeliveryTag, false, stoppingToken);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 await _channel.BasicAckAsync(ea.DeliveryTag, false, stoppingToken);
             }
         };
         
-        await _channel.BasicConsumeAsync(queue: _rabbitMqOptions.QueueNameTransact, autoAck: false, 
+        await _channel.BasicConsumeAsync(queue: _rabbitOptions.QueueNameTransact, autoAck: false, 
                                          consumer: consumer, cancellationToken: stoppingToken);
         
-        await _channel.BasicConsumeAsync(queue: _rabbitMqOptions.QueueNameWelcome, autoAck: false,
+        await _channel.BasicConsumeAsync(queue: _rabbitOptions.QueueNameWelcome, autoAck: false,
                                          consumer: consumer, cancellationToken: stoppingToken);
     }
 }

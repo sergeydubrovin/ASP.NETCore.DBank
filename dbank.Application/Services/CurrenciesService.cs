@@ -2,7 +2,6 @@ using System.Text.Json;
 using DBank.Application.Abstractions;
 using DBank.Application.Extensions;
 using DBank.Application.Models.Currencies;
-using DBank.Domain.Exceptions;
 using DBank.Domain.Options;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;

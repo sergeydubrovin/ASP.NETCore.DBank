@@ -1,8 +1,11 @@
 using System.Text;
+using System.Text.Json;
 using DBank.Application.Abstractions;
+using DBank.Application.Models.RabbitMq;
 using DBank.Domain.Entities;
 using DBank.Domain.Options;
 using Microsoft.Extensions.Options;
+using MimeKit;
 using RabbitMQ.Client;
 
 namespace DBank.Application.Services;
@@ -30,8 +33,15 @@ public class RabbitMqProducer : IRabbitMqProducer
     
     public async Task PublishTransactionToRabbitMq(string transactionData, string email)
     {
-        var message = $"{email}|Транзакция|{transactionData}";
-        var body = Encoding.UTF8.GetBytes(message);
+        var message = new CreatePublishMessage
+        {
+            RecipientEmail = email,
+            Subject = "Транзакция.",
+            Body = transactionData
+        };
+        var jsonMessage = JsonSerializer.Serialize(message);
+        var body = Encoding.UTF8.GetBytes(jsonMessage);
+        
         var properties = new BasicProperties
         {
             DeliveryMode = DeliveryModes.Persistent,
@@ -40,18 +50,25 @@ public class RabbitMqProducer : IRabbitMqProducer
                                           mandatory: true, basicProperties: properties, body.AsMemory());
     } 
 
-    public async Task PrepareTransactionMessage(CustomerEntity sender, CustomerEntity recipient, decimal amount)
+    public async Task PrepareTransactionMessage(CreateTransactionMessage message)
     {
-        var transactionData = $"VISA{recipient.Card[12..]} {DateTime.Now:HH:mm} " +
-                              $"Перевод {amount}р от {sender.FirstName} {sender.MiddleName[..1]}.";
+        var transactionData = $"VISA{message.RecipientCard[12..]} {DateTime.Now:HH:mm} " +
+                              $"Перевод {message.TransactionAmount}р от {message.SenderFirstName} {message.SenderMiddleName[..1]}.";
         
-        await PublishTransactionToRabbitMq(transactionData, recipient.Email);
+        await PublishTransactionToRabbitMq(transactionData, message.RecipientEmail);
     }
 
     public async Task PublishWelcomeToRabbitMq(string welcomeData, string email)
     {
-        var message = $"{email}|Добро пожаловать в DBank!|{welcomeData}";
-        var body = Encoding.UTF8.GetBytes(message);
+        var message = new CreatePublishMessage
+        {
+            RecipientEmail = email,
+            Subject = "Добро пожаловать в DBank!",
+            Body = welcomeData
+        };
+        var jsonMessage = JsonSerializer.Serialize(message);
+        var body = Encoding.UTF8.GetBytes(jsonMessage);
+        
         var properties = new BasicProperties
         {
             DeliveryMode = DeliveryModes.Persistent,
@@ -62,14 +79,21 @@ public class RabbitMqProducer : IRabbitMqProducer
 
     public async Task PrepareWelcomeMessage(CustomerEntity customer)
     {
-        var welcomeData = $"{customer.MiddleName} {customer.FirstName}{_rabbitMqOptions.WelcomeMessage}";
-        await PublishWelcomeToRabbitMq(welcomeData, customer.Email);
+        var welcomeMessage = _rabbitMqOptions.WelcomeMessage.Replace("{CustomerFio}", $"{customer.MiddleName} {customer.FirstName}");
+        await PublishWelcomeToRabbitMq(welcomeMessage, customer.Email);
     }
 
     public async Task PublishVerificationToRabbitMq(string verificationData, string email)
     {
-        var message = $"{email}|Код для подтверждения почты|{verificationData}";
-        var body = Encoding.UTF8.GetBytes(message);
+        var message = new CreatePublishMessage
+        {
+            RecipientEmail = email,
+            Subject = "Код для подтверждения почты.",
+            Body = verificationData
+        };
+        var jsonMessage = JsonSerializer.Serialize(message);
+        var body = Encoding.UTF8.GetBytes(jsonMessage);
+        
         var properties = new BasicProperties
         {
             DeliveryMode = DeliveryModes.Persistent,

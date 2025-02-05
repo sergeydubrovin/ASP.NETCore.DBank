@@ -118,7 +118,7 @@ namespace DBank.Web.Extensions
         public static WebApplicationBuilder AddBackgroundServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddHostedService<CurrenciesRefreshSchedule>();
-            builder.Services.AddHostedService<RabbitMqConsumer>();
+            builder.Services.AddHostedService<EmailConsumer>();
             builder.Services.AddSingleton<RabbitMqProducer>();
             builder.Services.AddSingleton<IRabbitMqProducer>(provider => provider.GetRequiredService<RabbitMqProducer>());
             
@@ -154,6 +154,7 @@ namespace DBank.Web.Extensions
                 options.Password.RequiredLength = 6;
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireNonAlphanumeric = false;
+                options.SignIn.RequireConfirmedEmail = true;
             })
             .AddEntityFrameworkStores<BankDbContext>()
             .AddUserManager<UserManager<UserEntity>>()

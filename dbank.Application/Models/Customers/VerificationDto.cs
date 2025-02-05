@@ -1,6 +1,6 @@
 namespace DBank.Application.Models.Customers;
 
-public class VerificationResponse
+public class VerificationDto
 {
     public required string VerificationCode { get; set; }
     public required string UserId { get; set; }

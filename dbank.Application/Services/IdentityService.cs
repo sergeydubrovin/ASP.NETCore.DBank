@@ -86,7 +86,6 @@ public class IdentityService(UserManager<UserEntity> userManager, IJwtGenerateSe
             
             return response;
         }
-
         throw new AuthenticationException();
     }
     

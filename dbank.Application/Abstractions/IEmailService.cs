@@ -1,7 +1,9 @@
+using DBank.Application.Models.Email;
+
 namespace DBank.Application.Abstractions;
 
 public interface IEmailService
 {
-    Task SendEmail(string email, string subject, string message);
+    Task SendEmail(CreateEmailMessage emailMessage);
     string GenerateCode();
 }

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace DBank.Application.Services;
 
@@ -27,13 +28,13 @@ public class CustomersService(BankDbContext context, IRabbitMqProducer rabbitMqP
         var email = customer.Email;
         var creationDate = DateTime.UtcNow;
 
-        var verificationData = new
+        var verificationData = new VerificationData
         {
             VerificationCode = verificationCode,
-            CreationDate = creationDate,
-            Customer = customer
+            VerificationDate = creationDate,
+            Customer = customer,
         };
-        var serialisedData = JsonConvert.SerializeObject(verificationData);
+        var serialisedData = JsonSerializer.Serialize(verificationData);
         
         await cache.SetStringAsync($"2fa-{userId}", serialisedData, _cacheOptions);
         await rabbitMqProducer.PrepareVerificationMessage(verificationCode, email);
@@ -41,13 +42,13 @@ public class CustomersService(BankDbContext context, IRabbitMqProducer rabbitMqP
         return userId;
     }
 
-    public async Task<bool> Verify(string verificationCode, string userId)
+    public async Task<bool> Verification(VerificationDto verification)
     {
-        var cachedData = await cache.GetStringAsync($"2fa-{userId}");
+        var cachedData = await cache.GetStringAsync($"2fa-{verification.UserId}");
         if (string.IsNullOrEmpty(cachedData)) throw new EntityNotFoundException("Verification Code not found.");
         
         var verificationData = JsonConvert.DeserializeObject<dynamic>(cachedData);
-        if (verificationData.VerificationCode != verificationCode)
+        if (verificationData.VerificationCode != verification.VerificationCode)
             throw new Exception("Customer verification code does not match.");
         
         var timeExpired = DateTime.UtcNow - (DateTime)verificationData.CreationDate;
@@ -57,16 +58,16 @@ public class CustomersService(BankDbContext context, IRabbitMqProducer rabbitMqP
         return true;
     }
     
-    public async Task Save(string verificationCode, string userId)
+    public async Task Save(VerificationDto verification)
     {
-        var isVerified = await Verify(verificationCode, userId);
+        var isVerified = await Verification(verification);
 
         if (isVerified)
         {
-            var cachedData = await cache.GetStringAsync($"2fa-{userId}");
+            var cachedData = await cache.GetStringAsync($"2fa-{verification.UserId}");
             if (string.IsNullOrEmpty(cachedData)) throw new Exception("Customer not verified.");
-            var verificationData = JsonConvert.DeserializeObject<dynamic>(cachedData);
-            var customer = verificationData.Customer;
+            var verificationData = JsonSerializer.Deserialize<VerificationData>(cachedData);
+            var customer = verificationData!.Customer;
 
             var entity = new CustomerEntity
             {
@@ -84,7 +85,7 @@ public class CustomersService(BankDbContext context, IRabbitMqProducer rabbitMqP
             await context.SaveChangesAsync();
 
             await rabbitMqProducer.PrepareWelcomeMessage(entity);
-            await cache.RemoveAsync($"2fa-{userId}");
+            await cache.RemoveAsync($"2fa-{verification.UserId}");
         }
         else
         {

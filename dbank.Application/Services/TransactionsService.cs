@@ -1,5 +1,6 @@
 ﻿using DBank.Application.Abstractions;
 using DBank.Application.Extensions;
+using DBank.Application.Models.RabbitMq;
 using DBank.Application.Models.Transactions;
 using DBank.Domain;
 using DBank.Domain.Entities;
@@ -50,8 +51,16 @@ public class TransactionsService(BankDbContext context, IRabbitMqProducer rabbit
 
             await context.Transactions.AddAsync(entity);
             await context.SaveChangesAsync();
-            
-            await rabbitMqProducer.PrepareTransactionMessage(sender, recipient, entity.TransactionAmount);
+
+            var message = new CreateTransactionMessage
+            {
+                SenderFirstName = sender.FirstName,
+                SenderMiddleName = sender.MiddleName,
+                RecipientCard = recipient.Card,
+                RecipientEmail = recipient.Email,
+                TransactionAmount = transactions.TransactionAmount
+            };
+            await rabbitMqProducer.PrepareTransactionMessage(message);
             
             await transaction.CommitAsync();
         }

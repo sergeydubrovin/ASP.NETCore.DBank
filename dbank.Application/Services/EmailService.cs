@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using DBank.Application.Abstractions;
+using DBank.Application.Models.Email;
 using MailKit.Net.Smtp;
 using DBank.Domain.Options;
 using MailKit.Security;
@@ -32,13 +33,13 @@ public class EmailService : IEmailService
         _generator = RandomNumberGenerator.Create();
     }
 
-    public async Task SendEmail(string recipientEmail, string subject, string body)
+    public async Task SendEmail(CreateEmailMessage emailMessage)
     {
         var message = new MimeMessage();
         message.From.Add(new MailboxAddress("DBank", _senderEmail));
-        message.To.Add(MailboxAddress.Parse(recipientEmail));
-        message.Subject = subject;
-        message.Body = new TextPart{ Text = body };
+        message.To.Add(MailboxAddress.Parse(emailMessage.RecipientEmail));
+        message.Subject = emailMessage.Subject;
+        message.Body = new TextPart{ Text = emailMessage.Body };
 
         using var client = new SmtpClient();
         try

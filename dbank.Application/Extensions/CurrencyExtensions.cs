@@ -26,7 +26,7 @@ public static class CurrencyExtensions
             _ => previous,
         };
         
-        var dto = new CurrencyConvertResponse
+        var response = new CurrencyConvertResponse
         {
             CurrencyCode = valute.CharCode,
             Name = valute.Name,
@@ -34,7 +34,6 @@ public static class CurrencyExtensions
             AmountRubles = amountRubles,
             AmountInCurrency = Math.Round(amountInCurrency, 2)
         };
-        
-        return dto;
+        return response;
     }
 }

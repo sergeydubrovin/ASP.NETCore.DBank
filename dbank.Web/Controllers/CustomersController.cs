@@ -22,13 +22,13 @@ public class CustomersController(ICustomersService customersService,
     }
 
     [HttpPost("save")]
-    public async Task<IActionResult> Save(string verificationCode, string key)
+    public async Task<IActionResult> Save(VerificationDto verification)
     {
         try
         {
             logger.LogInformation("Method api/customers/save Save started.");
             
-            await customersService.Save(verificationCode, key);
+            await customersService.Save(verification);
             
             logger.LogInformation("Method api/customers/save Save completed.");
             
