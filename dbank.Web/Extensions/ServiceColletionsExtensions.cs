@@ -121,6 +121,8 @@ namespace DBank.Web.Extensions
             builder.Services.AddHostedService<EmailConsumer>();
             builder.Services.AddSingleton<RabbitMqProducer>();
             builder.Services.AddSingleton<IRabbitMqProducer>(provider => provider.GetRequiredService<RabbitMqProducer>());
+            builder.Services.AddSingleton<RabbitMqService>();
+            builder.Services.AddSingleton<IRabbitMqService>(provider => provider.GetRequiredService<RabbitMqService>());
             
             return builder;
         }
@@ -183,6 +185,7 @@ namespace DBank.Web.Extensions
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JWT"));
             builder.Services.Configure<RabbitMqOptions>(builder.Configuration.GetSection("RabbitMq"));
             builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
+            builder.Services.Configure<NotificationsOptions>(builder.Configuration.GetSection("Notifications"));
             
             return builder;
         }

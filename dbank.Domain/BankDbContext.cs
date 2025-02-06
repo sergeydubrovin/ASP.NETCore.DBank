@@ -15,6 +15,8 @@ namespace DBank.Domain
         }
 
         public DbSet<CustomerEntity> Customers { get; set; }
+        
+        public DbSet<CardEntity> Cards { get; set; }
 
         public DbSet<BalanceEntity> Balances { get; set; }
 

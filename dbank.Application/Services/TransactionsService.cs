@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DBank.Application.Services;
 
-public class TransactionsService(BankDbContext context, IRabbitMqProducer rabbitMqProducer) : ITransactionsService
+public class TransactionsService(BankDbContext context, IRabbitMqService rabbitMqService) : ITransactionsService
 {
     public async Task Create(CreateTransactionsDto transactions)
     {
@@ -21,7 +21,8 @@ public class TransactionsService(BankDbContext context, IRabbitMqProducer rabbit
                 .FirstOrDefaultAsync(s => s.CustomerId == transactions.CustomerId);
             var recipient = await context.Customers
                 .Include(b => b.Balance)
-                .FirstOrDefaultAsync(r => r.Card == transactions.RecipientCard);
+                .Include(c => c.Card)
+                .FirstOrDefaultAsync(r => r.Card!.Card == transactions.RecipientCard);
 
             transactions.ValidationTransaction(sender, recipient);
 
@@ -51,16 +52,16 @@ public class TransactionsService(BankDbContext context, IRabbitMqProducer rabbit
 
             await context.Transactions.AddAsync(entity);
             await context.SaveChangesAsync();
-
+            
             var message = new CreateTransactionMessage
             {
                 SenderFirstName = sender.FirstName,
                 SenderMiddleName = sender.MiddleName,
-                RecipientCard = recipient.Card,
+                RecipientCard = recipient.Card!.Card,
                 RecipientEmail = recipient.Email,
                 TransactionAmount = transactions.TransactionAmount
             };
-            await rabbitMqProducer.PrepareTransactionMessage(message);
+            await rabbitMqService.PrepareTransactionMessage(message);
             
             await transaction.CommitAsync();
         }

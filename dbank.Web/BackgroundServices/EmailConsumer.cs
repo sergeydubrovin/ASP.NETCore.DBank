@@ -13,21 +13,21 @@ namespace DBank.Web.BackgroundServices;
 
 public class EmailConsumer : BackgroundService
 {
-    private readonly RabbitMqOptions _rabbitOptions;
-    private IChannel _channel;
+    private readonly RabbitMqOptions _rOptions;
+    private readonly IChannel _channel;
     private readonly IServiceProvider _serviceProvider;
 
     public EmailConsumer(IOptions<RabbitMqOptions> rabbitMqOptions, IServiceProvider serviceProvider)
     {
-        _rabbitOptions = rabbitMqOptions.Value;
+        _rOptions = rabbitMqOptions.Value;
         _serviceProvider = serviceProvider;
         var factory = new ConnectionFactory
         {
-            HostName = _rabbitOptions.Host,
-            Port = _rabbitOptions.Port,
-            UserName = _rabbitOptions.Username,
-            Password = _rabbitOptions.Password,
-            VirtualHost = _rabbitOptions.VirtualHost
+            HostName = _rOptions.Host,
+            Port = _rOptions.Port,
+            UserName = _rOptions.Username,
+            Password = _rOptions.Password,
+            VirtualHost = _rOptions.VirtualHost
         };
         
         var connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();
@@ -37,31 +37,8 @@ public class EmailConsumer : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         stoppingToken.ThrowIfCancellationRequested();
-
-        var factory = new ConnectionFactory
-        {
-            HostName = _rabbitOptions.Host,
-            Port = _rabbitOptions.Port,
-            UserName = _rabbitOptions.Username,
-            Password = _rabbitOptions.Password,
-            VirtualHost = _rabbitOptions.VirtualHost,
-        };
-        var connection = factory.CreateConnectionAsync(stoppingToken).GetAwaiter().GetResult();
-        _channel = connection.CreateChannelAsync(cancellationToken: stoppingToken).GetAwaiter().GetResult();
         
-        await _channel.DeclareExchangeAsync(_rabbitOptions.ExchangeName, 
-                                            _rabbitOptions.ExchangeType, stoppingToken);
-        
-        await _channel.DeclareQueueAsync(_rabbitOptions.QueueNameTransact, stoppingToken);
- 
-        await _channel.BindQueueAsync(_rabbitOptions.QueueNameTransact, _rabbitOptions.ExchangeName, 
-                                      _rabbitOptions.QueueNameTransact, stoppingToken);
-
-        await _channel.DeclareQueueAsync(_rabbitOptions.QueueNameWelcome, stoppingToken);
-
-        await _channel.BindQueueAsync(_rabbitOptions.QueueNameWelcome, _rabbitOptions.ExchangeName, 
-                                     _rabbitOptions.QueueNameWelcome, stoppingToken);
-       
+        await _channel.Migrate(_rOptions.ExchangeName, _rOptions.ExchangeType, _rOptions.QueueName, stoppingToken);
         
         var consumer = new AsyncEventingBasicConsumer(_channel);
         consumer.ReceivedAsync += async (_, ea) =>
@@ -91,10 +68,7 @@ public class EmailConsumer : BackgroundService
             }
         };
         
-        await _channel.BasicConsumeAsync(queue: _rabbitOptions.QueueNameTransact, autoAck: false, 
-                                         consumer: consumer, cancellationToken: stoppingToken);
-        
-        await _channel.BasicConsumeAsync(queue: _rabbitOptions.QueueNameWelcome, autoAck: false,
+        await _channel.BasicConsumeAsync(queue: _rOptions.QueueName, autoAck: false, 
                                          consumer: consumer, cancellationToken: stoppingToken);
     }
 }

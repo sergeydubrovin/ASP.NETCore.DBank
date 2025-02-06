@@ -18,7 +18,7 @@ public class CustomersController(ICustomersService customersService,
         
         logger.LogInformation($"Method api/customers Create completed. Response: {JsonSerializer.Serialize(userId)}");
         
-        return Accepted($"Customer creation initiated. Please verify your email. Your key: {userId}");
+        return Accepted($"Customer creation initiated. Please verify your email. Your id: {userId}");
     }
 
     [HttpPost("save")]
@@ -26,17 +26,17 @@ public class CustomersController(ICustomersService customersService,
     {
         try
         {
-            logger.LogInformation("Method api/customers/save Save started.");
+            logger.LogInformation("Method api/customers/save CompleteVerification started.");
             
-            await customersService.Save(verification);
+            await customersService.CompleteVerification(verification);
             
-            logger.LogInformation("Method api/customers/save Save completed.");
+            logger.LogInformation("Method api/customers/save CompleteVerification completed.");
             
             return Ok();
         }
         catch (Exception ex)
         {
-            logger.LogError($"Method api/customers/save Save failed. Error: {ex.Message}");
+            logger.LogError($"Method api/customers/save CompleteVerification failed. Error: {ex.Message}");
             return BadRequest(ex.Message);
         }
     }

@@ -7,8 +7,7 @@ public class RabbitMqOptions
     public required string Username { get; init; }
     public required string Password { get; init; }
     public required string VirtualHost { get; init; }
-    public required string QueueNameTransact { get; init; }
-    public required string QueueNameWelcome { get; init; }
+    public required string QueueName { get; init; }
     public required string ExchangeName { get; init; }
     public required string ExchangeType { get; init; }
     

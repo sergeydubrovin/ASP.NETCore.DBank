@@ -31,13 +31,22 @@ public static class RabbitMqExtensions
     }
 
     public static async Task BindQueueAsync(this IChannel channel, string queueName, string exchangeName, 
-                                            string routingKey, CancellationToken stoppingToken)
+                                            CancellationToken stoppingToken)
     {
         await channel.QueueBindAsync(
             queue: queueName,
             exchange: exchangeName,
-            routingKey: routingKey,
+            routingKey: queueName,
             cancellationToken: stoppingToken
         );
+    }
+
+    public static async Task Migrate(this IChannel channel, string exchangeName, string exchangeType, 
+                                       string queueName, CancellationToken stoppingToken)
+    {
+        await channel.DeclareExchangeAsync(exchangeName, exchangeType, stoppingToken);
+        
+        await channel.DeclareQueueAsync(queueName, stoppingToken);
+        await channel.BindQueueAsync(queueName, exchangeName, stoppingToken);
     }
 }

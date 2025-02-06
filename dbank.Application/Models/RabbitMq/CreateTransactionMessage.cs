@@ -1,3 +1,5 @@
+using DBank.Domain.Entities;
+
 namespace DBank.Application.Models.RabbitMq;
 
 public class CreateTransactionMessage

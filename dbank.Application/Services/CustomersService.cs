@@ -1,3 +1,4 @@
+using System.Text.Json;
 using DBank.Application.Abstractions;
 using DBank.Application.Mappers;
 using DBank.Application.Models.Customers;
@@ -8,104 +9,94 @@ using DBank.Domain.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace DBank.Application.Services;
 
-public class CustomersService(BankDbContext context, IRabbitMqProducer rabbitMqProducer, IEmailService emailService, 
+public class CustomersService(BankDbContext context, IRabbitMqService rabbitMqService, IEmailService emailService, 
                               IOptions<EmailOptions> emailOptions, IDistributedCache cache) : ICustomersService
 {
+    private readonly EmailOptions _emailOptions = emailOptions.Value;
     private readonly DistributedCacheEntryOptions _cacheOptions = new()
     {
         AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(emailOptions.Value.VerificationExpireMin)
     };
     
-    public async Task<string> Create(CreateCustomerDto customer)
+    public async Task<long> Create(CreateCustomerDto customer)
     {
-        var userId = Guid.NewGuid().ToString();
+        var entity = new CustomerEntity
+        {
+            CustomerId = customer.CustomerId,
+            Phone = customer.Phone,
+            MiddleName = customer.MiddleName,
+            FirstName = customer.FirstName,
+            LastName = customer.LastName,
+            Email = customer.Email,
+            BirthDate = customer.BirthDate,
+            IsVerified = false,
+        };
+        
+        await context.Customers.AddAsync(entity);
+        await context.SaveChangesAsync();
+        
         var verificationCode = emailService.GenerateCode();
-        var email = customer.Email;
-        var creationDate = DateTime.UtcNow;
-
         var verificationData = new VerificationData
         {
             VerificationCode = verificationCode,
-            VerificationDate = creationDate,
-            Customer = customer,
+            VerificationDate = DateTime.UtcNow,
+            CustomerId = customer.CustomerId,
         };
         var serialisedData = JsonSerializer.Serialize(verificationData);
         
-        await cache.SetStringAsync($"2fa-{userId}", serialisedData, _cacheOptions);
-        await rabbitMqProducer.PrepareVerificationMessage(verificationCode, email);
+        await cache.SetStringAsync($"2fa-{customer.CustomerId}", serialisedData, _cacheOptions);
+        await rabbitMqService.PrepareVerificationMessage(verificationCode, entity.Email);
         
-        return userId;
+        return customer.CustomerId;
     }
 
-    public async Task<bool> Verification(VerificationDto verification)
+    public async Task ValidateCode(VerificationDto verification)
     {
-        var cachedData = await cache.GetStringAsync($"2fa-{verification.UserId}");
+        var cachedData = await cache.GetStringAsync($"2fa-{verification.CustomerId}");
         if (string.IsNullOrEmpty(cachedData)) throw new EntityNotFoundException("Verification Code not found.");
         
-        var verificationData = JsonConvert.DeserializeObject<dynamic>(cachedData);
-        if (verificationData.VerificationCode != verification.VerificationCode)
+        var verificationData = JsonSerializer.Deserialize<VerificationData>(cachedData);
+        if (verificationData!.VerificationCode != verification.VerificationCode)
             throw new Exception("Customer verification code does not match.");
         
-        var timeExpired = DateTime.UtcNow - (DateTime)verificationData.CreationDate;
-        if (timeExpired > TimeSpan.FromMinutes(emailOptions.Value.VerificationExpireMin)) 
+        var timeExpired = DateTime.UtcNow - verificationData.VerificationDate;
+        if (timeExpired > TimeSpan.FromMinutes(_emailOptions.VerificationExpireMin)) 
             throw new Exception("Verification expired.");
-        
-        return true;
     }
     
-    public async Task Save(VerificationDto verification)
+    public async Task CompleteVerification(VerificationDto verification)
     {
-        var isVerified = await Verification(verification);
-
-        if (isVerified)
-        {
-            var cachedData = await cache.GetStringAsync($"2fa-{verification.UserId}");
-            if (string.IsNullOrEmpty(cachedData)) throw new Exception("Customer not verified.");
-            var verificationData = JsonSerializer.Deserialize<VerificationData>(cachedData);
-            var customer = verificationData!.Customer;
-
-            var entity = new CustomerEntity
-            {
-                CustomerId = customer.CustomerId,
-                Card = customer.Card,
-                Phone = customer.Phone,
-                MiddleName = customer.MiddleName,
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                Email = customer.Email,
-                BirthDate = customer.BirthDate
-            };
-
-            await context.Customers.AddAsync(entity);
-            await context.SaveChangesAsync();
-
-            await rabbitMqProducer.PrepareWelcomeMessage(entity);
-            await cache.RemoveAsync($"2fa-{verification.UserId}");
-        }
-        else
-        {
-            throw new Exception("Customer not verified.");
-        }
+        await ValidateCode(verification);
+        
+        var cachedData = await cache.GetStringAsync($"2fa-{verification.CustomerId}");
+        if (string.IsNullOrEmpty(cachedData)) throw new Exception("Verification Code not found.");
+        
+        var verificationData = JsonSerializer.Deserialize<VerificationData>(cachedData);
+        var customerId = verificationData!.CustomerId;
+            
+        var entity = await context.Customers.FirstOrDefaultAsync(c => c.CustomerId == customerId);
+        if (entity == null) throw new EntityNotFoundException($"Customer with id {verification.CustomerId} not found.");
+        entity.IsVerified = true;
+        
+        await context.SaveChangesAsync();
+        await rabbitMqService.PrepareWelcomeMessage(entity);
+        await cache.RemoveAsync($"2fa-{verification.CustomerId}");
     }
     
     public async Task<CustomerDto> GetById(long customerId)
     {
         var entity = await context.Customers
+            .Include(c => c.Card)
             .Include(c => c.CashDeposits)
             .Include(b => b.Balance)
             .Include(t => t.Transactions)
             .Include(c => c.Credits)
             .FirstOrDefaultAsync(e => e.Id == customerId);
 
-        if (entity == null)
-        {
-            throw new EntityNotFoundException($"Customer with id {customerId} not found.");
-        }
+        if (entity == null) throw new EntityNotFoundException($"Customer with id {customerId} not found.");
         
         return entity.ToDto();
     }
