@@ -26,7 +26,6 @@ public class IdentityService(UserManager<UserEntity> userManager, IJwtGenerateSe
 
         var createUserResult = await userManager.CreateAsync(new UserEntity
         {
-            Card = userRegisterDto.Card,
             UserName = userRegisterDto.Card,
         }, userRegisterDto.Password);
         
@@ -47,7 +46,7 @@ public class IdentityService(UserManager<UserEntity> userManager, IJwtGenerateSe
                 var response = new UserResponse
                 {
                     Id = user.Id,
-                    Card = user.Card,
+                    Card = user.UserName,
                     Roles = userRole.ToArray()
                 };
 
@@ -78,7 +77,7 @@ public class IdentityService(UserManager<UserEntity> userManager, IJwtGenerateSe
             var response = new UserResponse
             {
                 Id = user.Id,
-                Card = user.Card,
+                Card = user.UserName,
                 Roles = userRole.ToArray()
             };
             var claimsIdentity = GenerateClaimsIdentity(response);

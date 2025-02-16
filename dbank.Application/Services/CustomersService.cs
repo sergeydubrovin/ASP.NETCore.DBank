@@ -85,6 +85,30 @@ public class CustomersService(BankDbContext context, IRabbitMqService rabbitMqSe
         await rabbitMqService.PrepareWelcomeMessage(entity);
         await cache.RemoveAsync($"2fa-{verification.CustomerId}");
     }
+
+    public async Task ResendCode(long customerId)
+    {
+        var customer = await context.Customers.FirstOrDefaultAsync(c => c.CustomerId == customerId);
+        
+        if(customer == null) throw new EntityNotFoundException($"Customer with id {customerId} not found.");
+        if (customer.IsVerified)
+        {
+            throw new Exception("Customer is already verified.");
+        }
+        
+        var verificationCode = emailService.GenerateCode();
+        var verificationData = new VerificationData
+        {
+            VerificationCode = verificationCode,
+            VerificationDate = DateTime.UtcNow,
+            CustomerId = customerId
+        };
+        
+        var serialisedData = JsonSerializer.Serialize(verificationData);
+        
+        await cache.SetStringAsync($"2fa-{customerId}", serialisedData, _cacheOptions);
+        await rabbitMqService.PrepareVerificationMessage(verificationCode, customer.Email);
+    }
     
     public async Task<CustomerDto> GetById(long customerId)
     {

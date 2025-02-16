@@ -21,8 +21,8 @@ public class CustomersController(ICustomersService customersService,
         return Accepted($"Customer creation initiated. Please verify your email. Your id: {userId}");
     }
 
-    [HttpPost("save")]
-    public async Task<IActionResult> Save(VerificationDto verification)
+    [HttpPost("verification")]
+    public async Task<IActionResult> CompleteVerification(VerificationDto verification)
     {
         try
         {
@@ -39,6 +39,18 @@ public class CustomersController(ICustomersService customersService,
             logger.LogError($"Method api/customers/save CompleteVerification failed. Error: {ex.Message}");
             return BadRequest(ex.Message);
         }
+    }
+
+    [HttpPost("resend")]
+    public async Task<IActionResult> ResendCode(long customerId)
+    {
+        logger.LogInformation($"Method api/customers/resend Resend started. CustomerId: {customerId}");
+        
+        await customersService.ResendCode(customerId);
+        
+        logger.LogInformation("Method api/customers/resend Resend completed.");
+        
+        return Ok();
     }
     
     [HttpGet("{customerId:long}")]

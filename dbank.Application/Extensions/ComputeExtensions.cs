@@ -19,7 +19,7 @@ public static class ComputeExtensions
             finalAmount *= (1m + monthlyInterestRate);
         }
         
-        return Math.Round(finalAmount);
+        return Math.Round(finalAmount, 2);
     }
     
     public static decimal ComputeInitialPayment(this CreateCreditDto credit)
@@ -47,7 +47,7 @@ public static class ComputeExtensions
         
         var monthlyPayment = numerator / denominator;
         
-        return Math.Round(monthlyPayment);
+        return Math.Round(monthlyPayment, 2);
     }
     
     public static void ValidationTransaction(this CreateTransactionsDto? payment, CustomerEntity? sender,

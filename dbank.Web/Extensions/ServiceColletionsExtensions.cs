@@ -156,7 +156,6 @@ namespace DBank.Web.Extensions
                 options.Password.RequiredLength = 6;
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireNonAlphanumeric = false;
-                options.SignIn.RequireConfirmedEmail = true;
             })
             .AddEntityFrameworkStores<BankDbContext>()
             .AddUserManager<UserManager<UserEntity>>()

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace DBank.Domain.Entities
+﻿namespace DBank.Domain.Entities
 {
     public class TransactionEntity : BaseEntity
     {

@@ -1,7 +1,6 @@
 using DBank.Application.Models.Balances;
 using DBank.Application.Models.Cards;
 using DBank.Application.Models.Customers;
-using DBank.Domain;
 using DBank.Domain.Entities;
 
 namespace DBank.Application.Mappers;
@@ -18,6 +17,7 @@ public static class CustomersMapper
             Phone = entity.Phone,
             FirstName = entity.FirstName,
             LastName = entity.LastName,
+            Email = entity.Email,
             MiddleName = entity.MiddleName,
             BirthDate = entity.BirthDate,
             Balance = balance == null ? entity.Balance?.ToDto().Balance : balance.ToDto().Balance,
@@ -33,10 +33,11 @@ public static class CustomersMapper
         {
             CustomerId = entity.CustomerId,
             Card = card?.ToEntity(),
-            Phone = entity.Phone!,
+            Phone = entity.Phone,
             FirstName = entity.FirstName,
             LastName = entity.LastName,
-            MiddleName = entity.MiddleName!,
+            MiddleName = entity.MiddleName,
+            Email = entity.Email,
             BirthDate = entity.BirthDate,
             Balance = balance?.ToEntity(),
         };
