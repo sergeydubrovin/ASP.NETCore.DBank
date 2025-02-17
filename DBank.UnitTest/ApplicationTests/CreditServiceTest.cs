@@ -5,12 +5,12 @@ using DBank.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace UnitTestApplication;
+namespace UnitTestApplication.ApplicationTests;
 
 public class CreditServiceTest
 {
     [Fact]
-    public async Task Create_ValidCredit_ComputeInitialPayment_MonthlyPayment()
+    private async Task Create_ValidCredit_ComputeInitialPayment_MonthlyPayment()
     {
         // Arrange
         var creditDto = new CreateCreditDto

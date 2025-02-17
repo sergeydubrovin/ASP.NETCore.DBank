@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBank.Domain", "DBank.Domai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBank.Application", "DBank.Application\DBank.Application.csproj", "{2BAC454E-FECF-4FC7-B372-F5634A67E5A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestApplication", "UnitTestApplication\UnitTestApplication.csproj", "{88A29B1A-C568-41E5-BC7C-25FB40E4B5AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBank.UnitTest", "DBank.UnitTest\DBank.UnitTest.csproj", "{88A29B1A-C568-41E5-BC7C-25FB40E4B5AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

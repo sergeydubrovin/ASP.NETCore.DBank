@@ -8,12 +8,12 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
 
-namespace UnitTestApplication;
+namespace UnitTestApplication.ApplicationTests;
 
 public class JwtGenerateTest
 {
     [Fact]
-    public void JwtGenerate_Success_ReturnsToken()
+    private void JwtGenerate_Success_ReturnsToken()
     {
         // Arrange
         var jwtOptions = new JwtOptions

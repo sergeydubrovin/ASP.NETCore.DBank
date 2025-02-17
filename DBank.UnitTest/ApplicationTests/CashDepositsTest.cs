@@ -5,12 +5,12 @@ using DBank.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 
-namespace UnitTestApplication;
+namespace UnitTestApplication.ApplicationTests;
 
 public class CashDepositsTest
 {
     [Fact]
-    public async Task Create_ValidCashDeposit_ComputeFinalAmount_AccruedInterest()
+    private async Task Create_ValidCashDeposit_ComputeFinalAmount_AccruedInterest()
     {
         // Arrange
         var cashDepositDto = new CreateCashDepositDto
