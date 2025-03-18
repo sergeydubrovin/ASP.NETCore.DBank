@@ -12,6 +12,8 @@ public class CreditsService(BankDbContext context) : ICreditsService
 {
     public async Task<CreditEntity> Create(CreateCreditDto credit)
     {
+        credit.ValidationCredit();
+        
         var initialPayment = credit.ComputeInitialPayment();
         var monthlyPayment = credit.ComputeMonthlyPayment(initialPayment);
         

@@ -7,7 +7,7 @@ using Moq;
 
 namespace UnitTestApplication.ApplicationTests;
 
-public class CreditServiceTest
+public class CreditsTests
 {
     [Fact]
     private async Task Create_ValidCredit_ComputeInitialPayment_MonthlyPayment()
@@ -40,5 +40,30 @@ public class CreditServiceTest
         // Asserts
         Assert.Equal(expectedInitialPayment, result.InitialPayment);
         Assert.Equal(expectedMonthlyPayment, result.MonthlyPayment);
+    }
+
+    [Fact]
+    private async Task Create_InvalidCreditDto_ThrowsArgumentException()
+    {
+        // Arrange
+        var invalidDto = new CreateCreditDto
+        {
+            CustomerId = 1,
+            CreditAmount = 8000,
+            CreditPeriod = 11,
+            InterestRate = 0.11m,
+            InitialPaymentRate = 0.01m
+        };
+        
+        var options = new DbContextOptionsBuilder<BankDbContext>().Options;
+        var mockContext = new Mock<BankDbContext>(options);
+        var mockCreditDbSet = new Mock<DbSet<CreditEntity>>();
+        
+        mockContext.Setup(m => m.Credits).Returns(mockCreditDbSet.Object);
+        
+        var creditService = new CreditsService(mockContext.Object);
+        
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentException>(() => creditService.Create(invalidDto));
     }
 }

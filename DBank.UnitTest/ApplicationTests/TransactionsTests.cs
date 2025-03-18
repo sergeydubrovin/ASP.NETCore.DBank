@@ -1,55 +1,25 @@
 using DBank.Application.Abstractions;
 using DBank.Application.Models.RabbitMq;
-using DBank.Application.Models.Transactions;
 using DBank.Application.Services;
 using DBank.Domain;
-using DBank.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using UnitTestApplication.ApplicationTestsExtensions;
 
 namespace UnitTestApplication.ApplicationTests;
 
-public class TransactionsTest
+public class TransactionsTests
 {
     // Arrange
     [Fact]
     private async Task Create_Valid_Transaction()
     {
-        var sender = new CustomerEntity
-        {
-            CustomerId = 1,
-            FirstName = "sender",
-            MiddleName = "sender",
-            LastName = "sender",
-            Email = "sender.@gmail.com",
-            Phone = "89511103388",
-            Card = new CardEntity { CustomerId = 1, Card = "1234123412341234" },
-            Balance = new BalanceEntity { CustomerId = 1, Balance = 1000m }
-        };
-        var recipient = new CustomerEntity
-        {
-            CustomerId = 2,
-            FirstName = "recipient",
-            MiddleName = "recipient",
-            LastName = "recipient",
-            Email = "recipient.@gmail.com",
-            Phone = "89511103388",
-            Card = new CardEntity { CustomerId = 2, Card = "1234123412344321" },
-            Balance = new BalanceEntity { CustomerId = 2, Balance = 1000m }
-        };
-        var transactionDto = new CreateTransactionsDto
-        {
-            CustomerId = sender.CustomerId,
-            RecipientCard = recipient.Card.Card,
-            TransactionAmount = 300m,
-            Name = "testTransaction"
-        };
+        var (sender, recipient, transactionDto) = Extensions.CreateTransactionData();
         
         var options = new DbContextOptionsBuilder<BankDbContext>()
             .UseInMemoryDatabase(databaseName: "TransactionsTest")
-            .ConfigureWarnings(w => 
-                w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.InMemoryEventId.TransactionIgnoredWarning))
-            .Options;
+            .ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning)).Options;
 
         var mockRabbit = new Mock<IRabbitMqService>();
         mockRabbit.Setup(x => x.PrepareTransactionMessage(It.IsAny<CreateTransactionMessage>()))

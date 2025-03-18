@@ -12,6 +12,8 @@ public class CashDepositsService(BankDbContext context) : ICashDepositsService
 {
     public async Task<CashDepositEntity> Create(CreateCashDepositDto deposit)
     {
+        deposit.ValidationCashDeposit();
+        
         var finalAmount = deposit.ComputeFinalAmount();
         var accruedInterest = finalAmount - deposit.DepositAmount;
         

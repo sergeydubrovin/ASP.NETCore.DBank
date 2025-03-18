@@ -8,5 +8,5 @@
 	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/Storage/@EntryValue">ThisComputer</s:String>
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">False</s:Boolean>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3ebf832a_002Df311_002D4f12_002Dae11_002D9c75a31a67dd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="CreateCashDeposit_ComputesAndSaves" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Project Location="C:\Users\PC\RiderProjects\ASP.NETCore.dbank\UnitTestApplication" Presentation="&amp;lt;UnitTestApplication&amp;gt;" /&gt;&#xD;
+  &lt;ProjectFolder&gt;88A29B1A-C568-41E5-BC7C-25FB40E4B5AE/d:ApplicationTests&lt;/ProjectFolder&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

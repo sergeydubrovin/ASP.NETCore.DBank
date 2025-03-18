@@ -7,7 +7,7 @@ using Moq;
 
 namespace UnitTestApplication.ApplicationTests;
 
-public class CashDepositsTest
+public class CashDepositsTests
 {
     [Fact]
     private async Task Create_ValidCashDeposit_ComputeFinalAmount_AccruedInterest()
@@ -39,5 +39,29 @@ public class CashDepositsTest
         // Asserts
         Assert.Equal(finalAmount, result.FinalAmount);
         Assert.Equal(accruedInterest, result.AccruedInterest);
+    }
+
+    [Fact]
+    private async Task Create_InvalidCashDepositDto_ThrowsArgumentException()
+    {
+        // Arrange
+        var invalidDto = new CreateCashDepositDto
+        {
+            CustomerId = 1,
+            DepositAmount = 100,
+            DepositPeriod = 1,
+            InterestRate = 0.11m
+        };
+        
+        var options = new DbContextOptionsBuilder<BankDbContext>().Options;
+        var mockContext = new Mock<BankDbContext>(options);
+        var mockCashDepDbSet = new Mock<DbSet<CashDepositEntity>>();
+        
+        mockContext.Setup(m => m.CashDeposits).Returns(mockCashDepDbSet.Object);
+        
+        var cashDepService = new CashDepositsService(mockContext.Object);
+        
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentException>(async () => await cashDepService.Create(invalidDto));
     }
 }

@@ -10,7 +10,7 @@ using Moq;
 
 namespace UnitTestApplication.ApplicationTests;
 
-public class JwtGenerateTest
+public class JwtGenerateTests
 {
     [Fact]
     private void JwtGenerate_Success_ReturnsToken()
